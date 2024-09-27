@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>ARC 瞎做</title>
+    <url>/2024/09/27/ARC-%E7%9E%8E%E5%81%9A/</url>
+    <content><![CDATA[<h1 id="arc-瞎做">ARC 瞎做</h1>
+<p>范围：<span
+class="math inline">\(\text{ARC}[\ge104][\text{C|D|E|F}]\land\text{Difficulty}\ge1600\)</span>。</p>
+<h2 id="arc104">ARC104</h2>
+<h3 id="c">C</h3>
+<p>可以发现一段极小的合法区间必然是这样的一个形式：</p>
+<p><span
+class="math display">\[[x,x+y],[x+1,x+y+1],\ldots,[x+y-1,x+2y-1].\]</span></p>
+<p>然后你直接判区间合法 dp 一下就行了。细节有点多。</p>
+<h3 id="d">D</h3>
+<p>考虑 dp，令 <span class="math inline">\(dp_{i,j,k}\)</span>
+表示考虑了 <span class="math inline">\(1\sim i\)</span>
+的所有数字，一共选了 <span class="math inline">\(j\)</span> 个，和为
+<span class="math inline">\(k\)</span> 的方案数。</p>
+<p><del>直接做是 <span class="math inline">\(n^7\)</span>
+的过牛魔啊。。。</del></p>
+<p>首先前缀和优化砍掉一个 <span
+class="math inline">\(n\)</span>。然后你发现状态数就是这么多，必须优化状态数。</p>
+<p>考虑求 <span class="math inline">\(x\)</span> 的答案，不妨整体平移
+<span class="math inline">\(x\)</span>，那么就是 <span
+class="math inline">\(1-x\)</span> 到 <span
+class="math inline">\(n-x\)</span> 各 <span
+class="math inline">\(k\)</span> 个，选出若干个和为 <span
+class="math inline">\(0\)</span>。</p>
+<p>那么设 <span class="math inline">\(dp_{i,j}\)</span> 表示考虑了 <span
+class="math inline">\((1-x)\sim(i-x)\)</span> 的所有数，和为 <span
+class="math inline">\(j\)</span> 的方案数。那么求单个数的答案是 <span
+class="math inline">\(n^4\)</span>
+的，<del>常数小也许能冲过去？</del></p>
+<p>考虑正负分开算，设 <span class="math inline">\(dp_{i,j}\)</span>
+表示考虑 <span class="math inline">\(1\sim i\)</span> 的所有数，和为
+<span class="math inline">\(j\)</span> 的方案数。</p>
+<p>那么可以发现 <span class="math inline">\(x\)</span> 的答案就是 <span
+class="math inline">\(\displaystyle(k+1)\sum_{i=0}^\infty
+dp_{x-1,i}\cdot
+dp_{n-x,i}\)</span>。（就是正数总和等于负数绝对值总和）</p>
+<p>那么时间复杂度为 <span
+class="math inline">\(\Theta(n^4)\)</span>。</p>
+<h3 id="e">E</h3>
+<p>厉害题。</p>
+<p>考虑爆枚这 <span class="math inline">\(n\)</span>
+个数的大小关系（<strong>可能相等</strong>），然后算出它的 LIS
+长度，那么转化为求方案数。</p>
+<p>发现问题变成了：</p>
+<blockquote>
+<p>给出 <span class="math inline">\(A\)</span>，求满足 <span
+class="math inline">\(1\le a_i\le A_i\)</span>
+的<strong>严格上升</strong>序列 <span class="math inline">\(a\)</span>
+的数量。</p>
+</blockquote>
+<p>不妨假设 <span class="math inline">\(A\)</span> 不降，<span
+class="math inline">\(A_0=0\)</span>。</p>
+<p>设 <span class="math inline">\(dp_{i,j}\)</span> 表示将 <span
+class="math inline">\(1\sim a_j\)</span> 填在 <span
+class="math inline">\([1,A_i]\)</span> 中的方案数。</p>
+<p>那么有转移：</p>
+<p><span class="math display">\[dp_{i+1,j+k}\gets
+\binom{A_{i+1}-A_i}k\cdot dp_{i,j}.\]</span></p>
+<p>由于 <span class="math inline">\(k\)</span> 很小直接 <span
+class="math inline">\(\Theta(k)\)</span> 算组合数即可。</p>
+<p>然后就做完了。时间是 <span
+class="math inline">\(\Theta(n^n\cdot\mathrm{poly}(n))\)</span>，但是多几只
+<span class="math inline">\(n\)</span> 也随便冲。</p>
+<h3 id="f">F</h3>
+<p>不妨设 <span class="math inline">\(-1\)</span>
+的位置有一个无限高的，不影响。</p>
+<p>你考虑 <span class="math inline">\(p_i=j\)</span> 的限制就是 <span
+class="math inline">\(p_j&gt;p_i\)</span> 且【<span
+class="math inline">\(i&lt;k&lt;j\)</span> 时 <span
+class="math inline">\(p_j\le p_i\)</span>】。</p>
+<p>然后你考虑把笛卡尔树建出来，那么就是左儿子小于等于它的，右儿子小于它的。</p>
+<p>那么枚举根就变成两个区间的子问题了，dp 即可。（设 <span
+class="math inline">\(dp_{l,r,v}\)</span> 表示 <span
+class="math inline">\([l,r]\)</span> 内，值域为 <span
+class="math inline">\([1,v]\)</span> 的方案数。）</p>
+<p>注意到无论你怎么限制也只需要 <span class="math inline">\(n\)</span>
+的值域，所以状态数为 <span
+class="math inline">\(\Theta(n^3)\)</span>，转移只需枚举根，所以时间复杂度为
+<span class="math inline">\(\Theta(n^4)\)</span>。</p>
+<h2 id="arc105">ARC105</h2>
+<h3 id="c-1">C</h3>
+<p>首先这题很难把骆驼状压，只能 <span class="math inline">\(n!\)</span>
+爆枚。那么就不能再带一只 <span class="math inline">\(m\)</span> 了。</p>
+<p>假设确定了一个顺序。现在我们要求出前后两只骆驼的最小距离。</p>
+<p>考虑 dp，设 <span class="math inline">\(dp_i\)</span> 表示第一只和第
+<span class="math inline">\(i\)</span> 只骆驼的最小距离。</p>
+<p>转移时，考虑 <span class="math inline">\(j\sim i\)</span>
+只骆驼的限制：</p>
+<p><span class="math display">\[\forall p\text{ such that
+}v_p&lt;\sum_{k=j}^iw_i,dp_i\ge dp_j+l_p\]</span></p>
+<p>用人话说就是重量超了就必须隔得够远。</p>
+<p>注意到「所有 <span class="math inline">\(v_p\)</span>
+小于某个值」的位置会产生限制，那么可以按 <span
+class="math inline">\(v\)</span> 从小到大排序，那么每次就是取一段前缀的
+<span class="math inline">\(l\)</span>
+的最大值，预处理即可。转移时直接二分出产生限制的那段前缀即可。</p>
+<p>于是时间复杂度为 <span class="math inline">\(\Theta(n!n^2\log m+m\log
+m)\)</span>。</p>
+<h3 id="d-1">D</h3>
+<p>显然根据 <span class="math inline">\(n\)</span>
+的奇偶性会有一个人（设为 X）死命让异或和非 <span
+class="math inline">\(0\)</span>，反之亦然。</p>
+<p>那么首先如果所有的 <span class="math inline">\(cnt\)</span>
+都是偶数，那么另一个人只要模仿 X 的操作就能让 X 必输。</p>
+<p>反之，X
+可以每次把石子数最多的那袋扔到石子数最多的盘子，那么最后那个盘子的石子数会大于总数的一半，从而使异或和非
+<span class="math inline">\(0\)</span> 而获胜。</p>
+<p>时间复杂度 <span class="math inline">\(\Theta(n)\)</span> 或 <span
+class="math inline">\(\Theta(n\log n)\)</span>。</p>
+<h3 id="e-1">E</h3>
+<p><del>GameCoder。</del></p>
+<p>考虑最后加不动边时的图，可以发现一定是 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(n\)</span>
+分别在两坨点组成的团里。它有多少条边呢？假设其中一坨有 <span
+class="math inline">\(i\)</span> 个点：</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\frac{i(i-1)}2+\frac{(n-i)(n-i-1)}2\\
+=&amp;\frac{i^2-i+n^2-2in+i^2+i-n}2\\
+=&amp;i^2-in+\frac{n^2-n}2
+\end{aligned}\]</span></p>
+<p>可以发现，如果 <span class="math inline">\(n\)</span>
+是奇数，那么最后边数的奇偶性是固定的，胜负已分。</p>
+<p>如果 <span class="math inline">\(n\)</span>
+是偶数，那么其中一个人就会死命让 <span class="math inline">\(i\)</span>
+变成偶数，另一个人死命让 <span class="math inline">\(i\)</span>
+变成奇数。</p>
+<p>然后反正就是考虑一下镜像操作，结论就是如果先手死命抢偶数，那么当且仅当
+<span class="math inline">\(1\)</span> 和 <span
+class="math inline">\(n\)</span>
+所在连通块大小至少有一个是偶数时先手赢；如果先手死命抢奇数，那么当且仅当有一个是奇数时先手赢。</p>
+<h3 id="f-1">F</h3>
+<p>这不是我们的 <a
+href="https://atcoder.jp/contests/abc327/tasks/abc327_g">ABC327G</a>
+吗。</p>
+<p>首先你需要发现这个 good 的一坨定义说的是那个图是一个连通二分图。</p>
+<p>设 <span class="math inline">\(U\)</span> 为全集，<span
+class="math inline">\(f_S\)</span> 表示由 <span
+class="math inline">\(S\)</span>
+的导出子图组成的<strong>染色</strong>二分图的数量。（这个咋求等下再说）</p>
+<p>那么参考那个题的套路，设 <span class="math inline">\(h_S\)</span>
+为由 <span class="math inline">\(S\)</span>
+的导出子图组成的<strong>连通染色</strong>二分图的数量。</p>
+<p>那么容斥一下可以得到：</p>
+<p><span class="math display">\[h_S=f_S-\sum_{\substack{T\subset
+S\\\min\{S\}\in T}}h_T\cdot f_{S\backslash T}\]</span></p>
+<p>而连通二分图只有两种染色方式，那么答案就是 <span
+class="math inline">\(\dfrac{h_U}2\)</span>。</p>
+<p>然后看怎么求 <span class="math inline">\(f_S\)</span>。</p>
+<p>直接暴力枚举染色方案，那么方案数就是 <span
+class="math inline">\(2^{e}\)</span>，其中 <span
+class="math inline">\(e\)</span> 是连接两个异色点的边数。</p>
+<p>但是暴力做是 <span class="math inline">\(\Theta(3^nm)\)</span>
+的，过不去。</p>
+<p>考虑优化，预处理出 <span class="math inline">\(cnt_{S,i}\)</span>
+表示连接 <span class="math inline">\(i\)</span> 和 <span
+class="math inline">\(S\)</span> 中任意一点的边数。</p>
+<p>那么考虑递推求 <span class="math inline">\(f_S\)</span>。设 <span
+class="math inline">\(res_T\)</span> 表示 <span
+class="math inline">\(T\)</span> 中点染黑，其它染白，的异色边数。</p>
+<p>则有 <span class="math inline">\(res_\varnothing=0\)</span>；设 <span
+class="math inline">\(T\ne\varnothing\)</span>，那么令 <span
+class="math inline">\(v\in T\)</span>，易得 <span
+class="math inline">\(res_T=res_{T\backslash\{v\}}-cnt_{T,v}+cnt_{S\backslash
+T,v}\)</span>。</p>
+<p>这样就做到了 <span
+class="math inline">\(\Theta(3^n+2^nm)\)</span>。</p>
+<h2 id="arc106">ARC106</h2>
+<h3 id="d-2">D</h3>
+<p>注意到 <span
+class="math inline">\((a+b)^c=\displaystyle\sum_{i=0}^c\binom
+cia^ib^{c-i}\)</span>，令 <span
+class="math inline">\(s_i=\displaystyle\sum_{j=1}^na_j^i\)</span>，那么就有</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\sum_{i=1}^n\sum_{j=i+1}^n(a_i+a_j)^x\\
+=&amp;\sum_{i=1}^n\sum_{j=i+1}^n\sum_{k=0}^x\binom xka_i^ka_j^{x-k}\\
+=&amp;\sum_{k=0}^x\binom xk\sum_{i=1}^na_i^k\sum_{j=i+1}^na_j^{x-k}\\
+=&amp;\sum_{k=0}^x\binom xk\cdot\frac12(s_ks_{x-k}-s_x)
+\end{aligned}\]</span></p>
+<p>于是直接就 <span class="math inline">\(\Theta(nk+k^2)\)</span>
+做完了。</p>
+<h3 id="e-2">E</h3>
+<p>想了半天发现是唐题。</p>
+<p>你考虑二分，然后直接上 Hall 定理就等价于对于任意一个员工集合 <span
+class="math inline">\(S\)</span> 都有：<span
+class="math inline">\(S\)</span> 中有员工来工作的天数 <span
+class="math inline">\(\ge k\cdot|S|\)</span>。</p>
+<p>容斥一下就是 <span class="math inline">\(S\)</span>
+里面一个也不来的天数小于某个值。</p>
+<p>然后这个对于所有的 <span class="math inline">\(S\)</span>
+求可以高维前缀和做到 <span
+class="math inline">\(\Theta(n\cdot2^n)\)</span>。</p>
+<p>不难发现答案上界是 <span
+class="math inline">\(2nk\)</span>，直接预处理每天的考勤情况即可。时间复杂度
+<span
+class="math inline">\(\Theta(n^2k+nk\log(nk)+n2^n\log(nk))\)</span>。</p>
+<h3 id="f-2">F</h3>
+<p>首先一个前置知识就是：给定度数序列 <span
+class="math inline">\(f\)</span>，可以构成 <span
+class="math inline">\(\dfrac{(n-2)!}{\prod (f_i-1)!}\)</span>
+棵不同的树。（可以通过 Prüfer 序列证明）</p>
+<p>那么如果钦定每个部分的度数 <span
+class="math inline">\(f\)</span>，怎么统计不同的洞带来的贡献呢？</p>
+<p>从每个部分随便<strong>排列</strong> <span
+class="math inline">\(f_i\)</span>
+个洞，那么就可以将排列的第一个洞连到父亲，其它的依次连到儿子，可以证明这样是不重不漏的，所以方案数是
+<span class="math inline">\(\dfrac{d_i!}{(d_i-f_i)!}\)</span>。</p>
+<p>那么就可以列出答案的式子：</p>
+<p><span class="math display">\[\begin{aligned}
+&amp;\sum_{f\text{ is valid}}\frac{(n-2)!\prod
+d_i!}{\prod(d_i-f_i)!(f_i-1)!}\\
+=&amp;(n-2)!\left(\prod_{i=1}^nd_i\right)\sum_{f\text{ is
+valid}}\prod_{i=1}^n\binom{d_i-1}{f_i-1}\
+\end{aligned}\]</span></p>
+<p>考虑算右边那坨东西。注意到 <span class="math inline">\(\sum
+f_i=2n-2\)</span>，则 <span
+class="math inline">\(\sum(f_i-1)=n-2\)</span>，考虑如下问题：</p>
+<blockquote>
+<p>有 <span class="math inline">\(\sum(d_i-1)\)</span>
+个不同的物品，被分成了 <span class="math inline">\(n\)</span> 组，第
+<span class="math inline">\(i\)</span> 组有 <span
+class="math inline">\(d_i-1\)</span> 个。求从其中选出 <span
+class="math inline">\(n-2\)</span> 个物品的方案数。</p>
+</blockquote>
+<p>一方面，那一坨东西就相当于枚举每组选了多少个，再在每组里面选。</p>
+<p>另一方面，直接选和分组再选没区别，所以它等于 <span
+class="math inline">\(\dbinom{\sum(d_i-1)}{n-2}\)</span>。</p>
+<p>所以答案为：</p>
+<p><span
+class="math display">\[(n-2)!\left(\prod_{i=1}^nd_i\right)\binom{\sum(d_i-1)}{n-2}\]</span></p>
+<p>时间复杂度 <span class="math inline">\(\Theta(n)\)</span>。</p>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>AtCoder</category>
+        <category>ARC</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>CSP 2024</title>
+    <url>/2024/09/27/CSP-2024/</url>
+    <content><![CDATA[<p><del>说是游记其实不如说是训练记录。</del></p>
+<p>GD-S01190。</p>
+<h2 id="day--2omegasim--omega">Day <span
+class="math inline">\(-2\omega\sim -\omega\)</span></h2>
+<p>去了 xatyz 集训，在 33oj 打了二十多场 noip 模拟赛。一共 ak 了 <span
+class="math inline">\(\frac32\)</span> 场。（<del>有一场赛时 ak
+赛后加强数据被卡了，所以算半场</del>）</p>
+<p>中间跑到 bj 参加了百度之星决赛。<a
+href="https://www.luogu.com/article/7o43hy3z">详情见此</a></p>
+<p>开学后就正式成为了高一
+OIer。回学校上了一周，然后就停课了。<del>谁家停课还拿时间学 whk
+的。</del></p>
+<p>去打了高联。有个唐诗做一试 T1 时在草稿纸上写下了 <span
+class="math inline">\(8^{9^{2024}}=2^{27^{2024}}\)</span>，我不说是谁。椭圆双曲线啥的都忘光了。二试做完
+T1T3 就对着几何题罚坐了。</p>
+<p>开始打 dmy 的 csp 模拟赛。</p>
+<p>CSP-S 模拟赛暴打 110 pts 是不是这辈子有了。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/0h38cb1a.png" />
+<span class="math display">\[\small\textsf{Fig.1 某一道题的巨大
+dp}\]</span></p>
+<h2 id="day--omega">Day <span
+class="math inline">\(-\omega\)</span></h2>
+<p>初赛。</p>
+<p>没啥好说的。1h 速通掉了。完善程序 <span
+class="math inline">\(9\)</span> 个 <span class="math inline">\(\texttt
+A\)</span> 咋搞的。</p>
+<p>在草稿纸上默写了《山东车牌歌》和元素周期表。<del>后来发现「鲁 M
+滨州」的「滨」写成不带三点水的了</del></p>
+<p>没有对答案，<del>毕竟三年前过今年不过是不是。。。</del></p>
+<p>晚上 ABC372 暴拿 G 题一血 &amp; 终榜 rk 9，刷新了 PB。</p>
+<h2 id="day--omegasim-0">Day <span class="math inline">\(-\omega\sim
+0\)</span></h2>
+<p>ARC184 也难出了天际，怒切 AB，rk 87，把上场掉的 20 分涨了回来。</p>
+<p>也开始复健 33oj 了。</p>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>2024-2025</category>
+      </categories>
+  </entry>
+</search>
