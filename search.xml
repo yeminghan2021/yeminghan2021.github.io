@@ -42,7 +42,7 @@ dp_{n-x,i}\)</span>。（就是正数总和等于负数绝对值总和）</p>
 <p>那么时间复杂度为 <span
 class="math inline">\(\Theta(n^4)\)</span>。</p>
 <h3 id="e">E</h3>
-<p>厉害题。</p>
+<p>厉害题。看了题解才会。</p>
 <p>考虑爆枚这 <span class="math inline">\(n\)</span>
 个数的大小关系（<strong>可能相等</strong>），然后算出它的 LIS
 长度，那么转化为求方案数。</p>
