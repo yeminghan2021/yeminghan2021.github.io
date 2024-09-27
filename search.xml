@@ -3,8 +3,7 @@
   <entry>
     <title>ARC 瞎做</title>
     <url>/2024/09/27/ARC-%E7%9E%8E%E5%81%9A/</url>
-    <content><![CDATA[<h1 id="arc-瞎做">ARC 瞎做</h1>
-<p>范围：<span
+    <content><![CDATA[<p>范围：<span
 class="math inline">\(\text{ARC}[\ge104][\text{C|D|E|F}]\land\text{Difficulty}\ge1600\)</span>。</p>
 <h2 id="arc104">ARC104</h2>
 <h3 id="c">C</h3>
@@ -234,6 +233,58 @@ class="math inline">\(\dbinom{\sum(d_i-1)}{n-2}\)</span>。</p>
 <p><span
 class="math display">\[(n-2)!\left(\prod_{i=1}^nd_i\right)\binom{\sum(d_i-1)}{n-2}\]</span></p>
 <p>时间复杂度 <span class="math inline">\(\Theta(n)\)</span>。</p>
+<h2 id="arc107">ARC107</h2>
+<h3 id="d-3">D</h3>
+<p>这个 dp 的思路很妙啊。</p>
+<p>设 <span class="math inline">\(dp_{n,k}\)</span> 表示对应的答案，则
+<span class="math inline">\(n\ge k\)</span>（否则答案显然为 <span
+class="math inline">\(0\)</span>）。</p>
+<p>我们讨论：</p>
+<ul>
+<li>如果这里面有一个 <span class="math inline">\(1\)</span>，那么就是
+<span class="math inline">\(dp_{n-1,k-1}\)</span>；</li>
+<li>否则不妨把所有元素乘 <span
+class="math inline">\(2\)</span>，那么就是 <span
+class="math inline">\(dp_{n,2k}\)</span>。</li>
+</ul>
+<p>然后就做完了。<span class="math inline">\(\Theta(n^2)\)</span>。</p>
+<h3 id="e-3">E</h3>
+<p>纯结论题啊。。。</p>
+<blockquote>
+<p>Lemma：对于任意的 <span class="math inline">\(4\le
+i,j&lt;n\)</span>，有 <span
+class="math inline">\(a_{i,j}=a_{i+1,j+1}\)</span>。</p>
+<p><del>Proof</del>：</p>
+<p>你发现只要某一行 <span class="math inline">\(&gt;1\)</span>
+列的位置出了个 <span class="math inline">\(0\)</span>，后面 <span
+class="math inline">\(2\)</span> 列起就一定满足条件了。</p>
+<p>然后你发现第 <span class="math inline">\(3\)</span> 行起两个 <span
+class="math inline">\(0\)</span> 就最多隔 <span
+class="math inline">\(2\)</span> 个位置……</p>
+<p>然后就感性理解……</p>
+<p>你也可以写个暴力验证一下 <span
+class="math inline">\(5\times5\)</span> 的网格……</p>
+</blockquote>
+<p>然后你爆算前四行前四列就 <span
+class="math inline">\(\Theta(n)\)</span> 了……</p>
+<h3 id="f-3">F</h3>
+<p>抽象网络流。</p>
+<p>绝对值搁在那很难受，考虑换个说法：把它们赋一个（相同的）<span
+class="math inline">\(1\)</span> 或 <span
+class="math inline">\(-1\)</span> 的权值，和的最大值。</p>
+<p>这样就舒服多了：最大值就是很能流的样子；连通块的和，其实就是赋的权值全一样；进一步地，就是相邻的两个结点权值必须一样。</p>
+<p>那么此时每个结点有三种状态：赋 <span
+class="math inline">\(1\)</span>，赋 <span
+class="math inline">\(-1\)</span>，被删掉。</p>
+<p>考虑最小割，总价值减去最小要移除的贡献：你对一个结点建两个点 <span
+class="math inline">\(X,Y\)</span>，连一条边 <span
+class="math inline">\(X\to Y\)</span>，然后设 <span
+class="math inline">\(Y\)</span> 在 <span
+class="math inline">\(S\)</span> 集代表赋 <span
+class="math inline">\(1\)</span>，<span class="math inline">\(X\)</span>
+在 <span class="math inline">\(T\)</span> 集表示赋 <span
+class="math inline">\(-1\)</span>，否则表示删掉。</p>
+<p>然后你随便处理一下限制就完了……</p>
 ]]></content>
       <categories>
         <category>solutions</category>
