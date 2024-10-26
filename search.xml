@@ -3,14 +3,14 @@
   <entry>
     <title>CSP 2024</title>
     <url>/2024/09/27/CSP-2024/</url>
-    <content><![CDATA[<p>GD-S01190。</p>
+    <content><![CDATA[<p>GD-S01190/GD-S00489。</p>
 <h2 id="day--2omegasim--omega">Day <span
 class="math inline">\(-2\omega\sim -\omega\)</span></h2>
 <p>开学了。正式成为了高一 OIer。回学校上了一周，然后就停课了。</p>
 <p>去打了高联。有个唐诗做一试 T1 时在草稿纸上写下了 <span
 class="math inline">\(8^{9^{2024}}=2^{27^{2024}}\)</span>，我不说是谁。椭圆双曲线啥的都忘光了。二试做完
 T1T3 就对着几何题罚坐了。</p>
-<p>某场 CSP 模拟赛暴打 110pts，遗言丁真鉴定为原形毕露了。</p>
+<p>CSP 模拟赛暴打 110pts，遗言丁真鉴定为原形毕露了。</p>
 <p>如此成绩，如何 CSP？如此成绩，如何 CSP？如此成绩，如何 CSP？</p>
 <h2 id="day--omega">Day <span
 class="math inline">\(-\omega\)</span></h2>
@@ -23,8 +23,42 @@ A\)</span> 咋搞的。</p>
 <p>没有对答案，<del>毕竟三年前过今年不过是不是。。。</del></p>
 <h2 id="day--omegasim-0">Day <span class="math inline">\(-\omega\sim
 0\)</span></h2>
-<p>最近 CFAT 状态经常爆炸。在上 GM 7 个月后成功地掉下了 GM。</p>
+<p>最近 CFAT 状态经常爆炸。在上 GM 7 个月后成功地掉到了 IM。在上 3 Dan 5
+个月后成功的掉到了黄名。</p>
 <p>国庆模拟赛。爆！爆！爆！摆！摆！摆！魔怔！</p>
+<p>比赛前几天疯狂摆烂。</p>
+<p>发现高联 2= 了，但是是 2= rk11，唉 T1T2 不挂就可能 1= 了。</p>
+<p>Day <span class="math inline">\(0\)</span> 开始当预言家，押了
+greedy/dp/tree/ds。</p>
+<h2 id="day-1">Day <span class="math inline">\(1\)</span></h2>
+<p>发现考场在七楼，气喘吁吁。</p>
+<p>解压密码是随机字符串。</p>
+<p>开场开了个 NOI linux，可以传文件，爽！</p>
+<p>看 T1。<span class="math inline">\(\max cnt\)</span> 秒了。此时是
+15min。</p>
+<p>看 T2。超速一定是段区间，二分加贪心秒了。此时是 45min。</p>
+<p>看 T3。一眼 <span class="math inline">\(n^2\)</span>
+dp，然后线段树优化完了。写写写，过样例了，此时是 1h30m。</p>
+<p>把前三题扔到了虚拟机上跑。不是为啥 <code>ulimit -v</code> 和
+<code>-fsanitize=address</code> 一起用会爆啊？浪费 5min，急了，把
+<code>fsanitize</code> 删了。</p>
+<p>看 T4。不会。</p>
+<p>回去给 T3 造了组极限。我擦跑了 1.5s？我擦线段树原来是 <span
+class="math inline">\(\Theta(Tn\log V)\)</span>
+的？发现可以线性，改改改，0.2s 轻松通过，此时是 2h15m。</p>
+<p>编了半天编出了 T4 的 <span class="math inline">\(\Theta(Tn\log
+n)\)</span>，写写写，样例 2 过，样例 3 过，样例 4……WA 了？</p>
+<p>发现假了。此时是 3h20m。</p>
+<p>尝试改，发现要多一只 <span
+class="math inline">\(\log\)</span>。不管了开改，过了所有样例。</p>
+<p>测了一下 T4 效率，发现 <span class="math inline">\(T=16\)</span> 可以
+0.5s 轻松跑过？</p>
+<p>最后 15min 开摆了。</p>
+<p>估分 <span class="math inline">\(100+100+100+76=376\)</span>。</p>
+<hr />
+<p>出来发现一车人 AK 了。又双叒叕被爆了 T_T</p>
+<p>昨天预言的似乎只有 T1 比较准。</p>
+<p>听说勾 7 线要 300+？？？不是今年真比去年简单得多吗。</p>
 ]]></content>
       <categories>
         <category>游记</category>
