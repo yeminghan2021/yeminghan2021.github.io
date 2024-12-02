@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NOIP 2024</title>
+    <url>/2024/11/24/NOIP-2024/</url>
+    <content><![CDATA[<h2 id="day--">Day -??</h2>
+<p>CSP-S <span class="math inline">\(376\)</span>，GD
+rk16。也是把准考证号干到 <strong>GD-0020</strong> 了。</p>
+<p>考点：gdfz 3 考场 48 号。</p>
+<p>模拟赛打得一天比一天爆。怎么打感觉也进不了队。你见过 NOI <span
+class="math inline">\(455\)</span>，CSP-S 模拟 <span
+class="math inline">\(110\)</span>，NOIP 模拟 <span
+class="math inline">\(80\)</span>
+的吗？？？<del>好吧你见过，这是我。</del></p>
+<h2 id="day--1">Day -1</h2>
+<p>回到了抢州。</p>
+<p>试图二刷 建造军营 结果二次破防了。写牛魔，摆！（flag 1）</p>
+<h2 id="day-0">Day 0</h2>
+<p>在 CF 上发了<a
+href="https://codeforces.com/blog/entry/136683?#comment-1222411">我想 AK
+NOIP</a>。</p>
+<p>打完 NOIP 晚上还有 ABC &amp; CF 1+2：爽！！</p>
+<h2 id="day-1">Day 1</h2>
+<p>开题：</p>
+<p>T1
+有点神秘，糊了个贪心糊了个一点也不严谨的证明就开打，过了样例就扔了。</p>
+<p>T2，不是哥们，谁家 J 组 T2 扔这来了。此时是 9:15。</p>
+<p>T3，一堆团连成一个树状物求 dfs 序数量。发现每个团内是一条链。发现 AB
+性质送的，<span class="math inline">\(k=1\)</span>
+送的。暂时没思路了。</p>
+<p>T4，发现区间 <span class="math inline">\(\operatorname{lca}\)</span>
+可以 <span class="math inline">\(\Theta(n\log n+q)\)</span>，32
+分送的。</p>
+<p>T3，发现可以容斥做到 <span
+class="math inline">\(\Theta(T2^kn)\)</span>，现在有 64 分了。</p>
+<p>现在大概 10:30，已经 296 分了，看起来很赢！（flag 2）</p>
+<p>并没有立刻写，而是打算冲正解。（flag 3）</p>
+<p>然后……对着 T3 编了个树形 dp，然后…………</p>
+<p>错。修。错。修。错。修。</p>
+<p>12:20。发现 T3 假光了。</p>
+<p>删掉。删掉。删掉。不，是不是还能……</p>
+<p>还 ** 的修个 der 啊！！！拼部分分啊！！！</p>
+<p>12:52 T3 终于调出了 64 分。</p>
+<p>不测 linux 了！写 T4！12:53，12:54，12:55，12:56，</p>
+<p>写牛魔啊！看看 freopen，加了，关了，盯着表。</p>
+<p>12:57。</p>
+<hr />
+<p>100+100+64+0。</p>
+<p>大家全都 340，360 什么什么的。</p>
+<p>悬着的心终于死了。</p>
+<hr />
+<p>躺到床上。憋不住了。</p>
+<p>不断对自己说「只差个大几十分，省选翻盘还是有希望的」「CSP-S
+发挥不完全，NOIP 完全不发挥，省选必完全发挥」。</p>
+<p>尽管心里知道只是在安慰自己。</p>
+<hr />
+<p>晚上 CF 倒是回 grandmaster 了，但是谁让你 NOIP 给 CF 攒 RP
+了？？？？</p>
+<h2 id="day-2---day">Day 2 - Day ??</h2>
+<p>把 lg 签名改成了「三分联注定，七分选打拼」。</p>
+<hr />
+<hr />
+<h2 id="总结">总结</h2>
+<ul>
+<li>Flag 1：哼，没想到吧！我 NOIP
+又出这种题辣！！！你就等死吧！！！</li>
+<li>Flag
+2：不要半场开香槟好吗？不要半场开香槟好吗？？不要半场开香槟好吗？？？</li>
+<li>Flag 3：<span class="math inline">\(70+55&gt;100+15\)</span>
+这个道理你懂不懂啊？？？</li>
+</ul>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>2024-2025</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSP 2024</title>
     <url>/2024/09/27/CSP-2024/</url>
     <content><![CDATA[<p>GD-S01190/GD-S00489。</p>
@@ -82,111 +157,6 @@ src="https://cdn.luogu.com.cn/upload/image_hosting/h0d9pmrz.png" /></p>
       <categories>
         <category>游记</category>
         <category>2024-2025</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>duel records</title>
-    <url>/2024/10/29/duel-%E8%AE%B0/</url>
-    <content><![CDATA[<p>感觉最近不 duel
-就完全没法集中精力做题。。。<del>我才不会告诉你我写这东西也是因为不想做题。</del></p>
-<p>初始 rating：<span
-class="math inline">\(\color{orange}{2368}\)</span>。</p>
-<h3 id="cf1438c-engineer-artem-2000">#1 <a
-href="https://codeforces.com/contest/1438/problem/C">CF1438C Engineer
-Artem</a> (*2000)</h3>
-<p><span
-class="math inline">\({\color{red}\texttt{Lose}},{\color{orange}{}^{2368}}\searrow\color{orange}{}_{2240}\)</span>。</p>
-<p>对面那哥们 3min 秒了，我脑子没转过弯来。</p>
-<p>其实是唐题，你直接黑白染色，黑点变奇数白点变偶数就完了。</p>
-<h3 id="cf698c-lru-2400">#2 <a
-href="https://codeforces.com/contest/698/problem/C">CF698C LRU</a>
-(*2400)</h3>
-<p><span
-class="math inline">\({\color{green}\texttt{Win}},{\color{orange}{}_{2240}}\nearrow\color{orange}{}^{2264}\)</span>。</p>
-<p>匹配到了 lbw 大神。</p>
-<p>直接考虑倒序操作，一个东西进去就不动了。</p>
-<p>那么直接状压哪些东西已经进去了，然后 dp 计算其概率，进到 <span
-class="math inline">\(k\)</span> 个就统计贡献即可。</p>
-<p>注意如果没东西能进（剩下的概率全是 <span
-class="math inline">\(0\)</span>）也要返回。<del>因为这个 corner case
-挂了 3 发</del></p>
-<h3 id="cf350e-wrong-floyd-2200">#3 <a
-href="https://codeforces.com/contest/350/problem/E">CF350E Wrong
-Floyd</a> (*2200)</h3>
-<p><span
-class="math inline">\({\color{green}\texttt{Win}},{\color{orange}{}_{2264}}\nearrow\color{orange}{}^{2284}\)</span>。（eps
-的优势）</p>
-<p><del>考的是你有没有很好地理解 Floyd。</del></p>
-<p>首先那 <span class="math inline">\(k\)</span>
-个点本身是没用的，直接按 <span class="math inline">\(1\sim k\)</span>
-做然后对应过去就行了。</p>
-<p><span class="math inline">\(k=n\)</span> 显然是对的。下设 <span
-class="math inline">\(k&lt;n\)</span>。</p>
-<p>考虑 Floyd 算法，做完 <span class="math inline">\(k\)</span>
-轮本质上是计算了以 <span class="math inline">\(1\sim k\)</span>
-为中转点时的距离。</p>
-<p>先钦定两个点使它们的距离挂掉。注意到 <span class="math inline">\(\le
-k\)</span> 的点会使对它进行的那一轮无效，所以不妨选择 <span
-class="math inline">\(1,2\)</span>。</p>
-<p>显然 <span class="math inline">\(1,2\)</span> 间不能有边。</p>
-<p>吗德不会讲了，反正边数上界是 <span
-class="math inline">\(m\le\frac{n(n-1)}2-k+1\)</span>，构造是 <span
-class="math inline">\(2\sim n\)</span> 连完全图，<span
-class="math inline">\(1\)</span> 向 <span
-class="math inline">\((k+1)\sim n\)</span>
-连边。小于上界随便删点边即可。</p>
-<h3 id="cf1059e-split-the-tree-2400">#4 <a
-href="https://codeforces.com/contest/1059/problem/E">CF1059E Split the
-Tree</a> (*2400)</h3>
-<p><span
-class="math inline">\({\color{red}\texttt{Lose}},{\color{orange}{}^{2284}}\searrow\color{orange}{}_{2191}\)</span>。（比对面晚
-eps 分钟交，结果还挂了好几发。）</p>
-<p>唐题，咋想了半天写了半天。</p>
-<p>实际上一个点被盖多次也可以把一些链缩回去来达到恰好一次。所以可以当每个点<strong>至少覆盖一次</strong>。</p>
-<p>注意到如果一个点为一条链的下端点，那上端点肯定越往上越优。这个上端点直接倍增啥的算下就行了。</p>
-<p>然后易证从下往上贪就是对的。（一个点没被它的子树盖住就必须从它往上盖）</p>
-<h3 id="cf1628d2-game-on-sum-hard-version-2400">#5 <a
-href="https://codeforces.com/contest/1628/problem/D2">CF1628D2 Game on
-Sum (Hard Version)</a> (*2400)</h3>
-<p><span
-class="math inline">\({\color{green}\texttt{Win}},{\color{orange}{}_{2191}}\nearrow\color{orange}{}^{2204}\)</span>。</p>
-<p>对面好像是个题解管理……？还跟我互关了……？上一场的对手还凑热闹来交这题了……？</p>
-<p>首先 <span class="math inline">\(k\)</span>
-没用，单纯乘了个系数。可以当 <span class="math inline">\(k=1\)</span>
-做。</p>
-<p>考虑 dp，<span class="math inline">\(dp_{n,m}\)</span> 表示 <span
-class="math inline">\(n,m\)</span> 的答案。</p>
-<p>不难写出转移</p>
-<p><span class="math display">\[dp_{n,m}=\max_{0\le x\le
-1}\min\{dp_{n-1,m-1}+x,dp_{n-1,m}-x\}\]</span></p>
-<p>（其中 <span class="math inline">\(x\)</span> 是实数，如果 <span
-class="math inline">\(m&lt;0\)</span> 或 <span
-class="math inline">\(m&gt;n\)</span> 就是 <span
-class="math inline">\(+\infty\)</span>。）</p>
-<p>然后就能过 easy ver 了。</p>
-<p>考虑优化，不难发现 <span
-class="math inline">\(dp_{n,0}=0,dp_{n,n}=n\)</span>。</p>
-<p>然后看转移式：如果 <span
-class="math inline">\(dp_{n-1,m}-dp_{n-1,m-1}\le 2\)</span>，那么显然有
-<span
-class="math inline">\(dp_{n,m}=\dfrac12(dp_{n-1,m}+dp_{n-1,m-1})\)</span>。</p>
-<p>然后这个条件是成立的，证明留作习题。</p>
-<p>那么考虑计算每个 <span class="math inline">\((i,i)\)</span>
-对答案的贡献（实际上还有 <span class="math inline">\((i,0)\)</span>
-的，但是因为是 <span class="math inline">\(0\)</span> 可以忽略掉）。</p>
-<p>那么转化成：<span class="math inline">\((i,j)\)</span> 可以走到 <span
-class="math inline">\((i-1,j)\)</span> 或 <span
-class="math inline">\((i-1,j-1)\)</span>，求 <span
-class="math inline">\((n,m)\)</span> 首次走到 <span
-class="math inline">\(x=y\)</span> 的位置是 <span
-class="math inline">\((i,i)\)</span> 的方案数。</p>
-<p>这玩意显然就是一堆组合数，贡献就乘一个 <span
-class="math inline">\(2\)</span> 的负几次方就行。时间复杂度 <span
-class="math inline">\(\Theta(n)\)</span>。</p>
-]]></content>
-      <categories>
-        <category>solutions</category>
-        <category>CodeForces</category>
       </categories>
   </entry>
   <entry>
@@ -548,6 +518,111 @@ class="math inline">\(\Theta(n)\)</span>。</p>
       <categories>
         <category>solutions</category>
         <category>AtCoder</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>duel records</title>
+    <url>/2024/10/29/duel-%E8%AE%B0/</url>
+    <content><![CDATA[<p>感觉最近不 duel
+就完全没法集中精力做题。。。<del>我才不会告诉你我写这东西也是因为不想做题。</del></p>
+<p>初始 rating：<span
+class="math inline">\(\color{orange}{2368}\)</span>。</p>
+<h3 id="cf1438c-engineer-artem-2000">#1 <a
+href="https://codeforces.com/contest/1438/problem/C">CF1438C Engineer
+Artem</a> (*2000)</h3>
+<p><span
+class="math inline">\({\color{red}\texttt{Lose}},{\color{orange}{}^{2368}}\searrow\color{orange}{}_{2240}\)</span>。</p>
+<p>对面那哥们 3min 秒了，我脑子没转过弯来。</p>
+<p>其实是唐题，你直接黑白染色，黑点变奇数白点变偶数就完了。</p>
+<h3 id="cf698c-lru-2400">#2 <a
+href="https://codeforces.com/contest/698/problem/C">CF698C LRU</a>
+(*2400)</h3>
+<p><span
+class="math inline">\({\color{green}\texttt{Win}},{\color{orange}{}_{2240}}\nearrow\color{orange}{}^{2264}\)</span>。</p>
+<p>匹配到了 lbw 大神。</p>
+<p>直接考虑倒序操作，一个东西进去就不动了。</p>
+<p>那么直接状压哪些东西已经进去了，然后 dp 计算其概率，进到 <span
+class="math inline">\(k\)</span> 个就统计贡献即可。</p>
+<p>注意如果没东西能进（剩下的概率全是 <span
+class="math inline">\(0\)</span>）也要返回。<del>因为这个 corner case
+挂了 3 发</del></p>
+<h3 id="cf350e-wrong-floyd-2200">#3 <a
+href="https://codeforces.com/contest/350/problem/E">CF350E Wrong
+Floyd</a> (*2200)</h3>
+<p><span
+class="math inline">\({\color{green}\texttt{Win}},{\color{orange}{}_{2264}}\nearrow\color{orange}{}^{2284}\)</span>。（eps
+的优势）</p>
+<p><del>考的是你有没有很好地理解 Floyd。</del></p>
+<p>首先那 <span class="math inline">\(k\)</span>
+个点本身是没用的，直接按 <span class="math inline">\(1\sim k\)</span>
+做然后对应过去就行了。</p>
+<p><span class="math inline">\(k=n\)</span> 显然是对的。下设 <span
+class="math inline">\(k&lt;n\)</span>。</p>
+<p>考虑 Floyd 算法，做完 <span class="math inline">\(k\)</span>
+轮本质上是计算了以 <span class="math inline">\(1\sim k\)</span>
+为中转点时的距离。</p>
+<p>先钦定两个点使它们的距离挂掉。注意到 <span class="math inline">\(\le
+k\)</span> 的点会使对它进行的那一轮无效，所以不妨选择 <span
+class="math inline">\(1,2\)</span>。</p>
+<p>显然 <span class="math inline">\(1,2\)</span> 间不能有边。</p>
+<p>吗德不会讲了，反正边数上界是 <span
+class="math inline">\(m\le\frac{n(n-1)}2-k+1\)</span>，构造是 <span
+class="math inline">\(2\sim n\)</span> 连完全图，<span
+class="math inline">\(1\)</span> 向 <span
+class="math inline">\((k+1)\sim n\)</span>
+连边。小于上界随便删点边即可。</p>
+<h3 id="cf1059e-split-the-tree-2400">#4 <a
+href="https://codeforces.com/contest/1059/problem/E">CF1059E Split the
+Tree</a> (*2400)</h3>
+<p><span
+class="math inline">\({\color{red}\texttt{Lose}},{\color{orange}{}^{2284}}\searrow\color{orange}{}_{2191}\)</span>。（比对面晚
+eps 分钟交，结果还挂了好几发。）</p>
+<p>唐题，咋想了半天写了半天。</p>
+<p>实际上一个点被盖多次也可以把一些链缩回去来达到恰好一次。所以可以当每个点<strong>至少覆盖一次</strong>。</p>
+<p>注意到如果一个点为一条链的下端点，那上端点肯定越往上越优。这个上端点直接倍增啥的算下就行了。</p>
+<p>然后易证从下往上贪就是对的。（一个点没被它的子树盖住就必须从它往上盖）</p>
+<h3 id="cf1628d2-game-on-sum-hard-version-2400">#5 <a
+href="https://codeforces.com/contest/1628/problem/D2">CF1628D2 Game on
+Sum (Hard Version)</a> (*2400)</h3>
+<p><span
+class="math inline">\({\color{green}\texttt{Win}},{\color{orange}{}_{2191}}\nearrow\color{orange}{}^{2204}\)</span>。</p>
+<p>对面好像是个题解管理……？还跟我互关了……？上一场的对手还凑热闹来交这题了……？</p>
+<p>首先 <span class="math inline">\(k\)</span>
+没用，单纯乘了个系数。可以当 <span class="math inline">\(k=1\)</span>
+做。</p>
+<p>考虑 dp，<span class="math inline">\(dp_{n,m}\)</span> 表示 <span
+class="math inline">\(n,m\)</span> 的答案。</p>
+<p>不难写出转移</p>
+<p><span class="math display">\[dp_{n,m}=\max_{0\le x\le
+1}\min\{dp_{n-1,m-1}+x,dp_{n-1,m}-x\}\]</span></p>
+<p>（其中 <span class="math inline">\(x\)</span> 是实数，如果 <span
+class="math inline">\(m&lt;0\)</span> 或 <span
+class="math inline">\(m&gt;n\)</span> 就是 <span
+class="math inline">\(+\infty\)</span>。）</p>
+<p>然后就能过 easy ver 了。</p>
+<p>考虑优化，不难发现 <span
+class="math inline">\(dp_{n,0}=0,dp_{n,n}=n\)</span>。</p>
+<p>然后看转移式：如果 <span
+class="math inline">\(dp_{n-1,m}-dp_{n-1,m-1}\le 2\)</span>，那么显然有
+<span
+class="math inline">\(dp_{n,m}=\dfrac12(dp_{n-1,m}+dp_{n-1,m-1})\)</span>。</p>
+<p>然后这个条件是成立的，证明留作习题。</p>
+<p>那么考虑计算每个 <span class="math inline">\((i,i)\)</span>
+对答案的贡献（实际上还有 <span class="math inline">\((i,0)\)</span>
+的，但是因为是 <span class="math inline">\(0\)</span> 可以忽略掉）。</p>
+<p>那么转化成：<span class="math inline">\((i,j)\)</span> 可以走到 <span
+class="math inline">\((i-1,j)\)</span> 或 <span
+class="math inline">\((i-1,j-1)\)</span>，求 <span
+class="math inline">\((n,m)\)</span> 首次走到 <span
+class="math inline">\(x=y\)</span> 的位置是 <span
+class="math inline">\((i,i)\)</span> 的方案数。</p>
+<p>这玩意显然就是一堆组合数，贡献就乘一个 <span
+class="math inline">\(2\)</span> 的负几次方就行。时间复杂度 <span
+class="math inline">\(\Theta(n)\)</span>。</p>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>CodeForces</category>
       </categories>
   </entry>
 </search>
