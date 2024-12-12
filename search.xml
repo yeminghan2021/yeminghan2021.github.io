@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>NOIP 2024</title>
+    <url>/2024/11/24/NOIP-2024/</url>
+    <content><![CDATA[<h2 id="day--">Day -??</h2>
+<p>CSP-S <span class="math inline">\(376\)</span>，GD
+rk16。也是把准考证号干到 <strong>GD-0020</strong> 了。</p>
+<p>考点：gdfz 3 考场 48 号。</p>
+<p>模拟赛打得一天比一天爆。怎么打感觉也进不了队。你见过 NOI <span
+class="math inline">\(455\)</span>，CSP-S 模拟 <span
+class="math inline">\(110\)</span>，NOIP 模拟 <span
+class="math inline">\(80\)</span>
+的吗？？？<del>好吧你见过，这是我。</del></p>
+<h2 id="day--1">Day -1</h2>
+<p>回到了抢州。</p>
+<p>试图二刷 建造军营 结果二次破防了。写牛魔，摆！（flag 1）</p>
+<h2 id="day-0">Day 0</h2>
+<p>在 CF 上发了<a
+href="https://codeforces.com/blog/entry/136683?#comment-1222411">我想 AK
+NOIP</a>。</p>
+<p>打完 NOIP 晚上还有 ABC &amp; CF 1+2：爽！！</p>
+<h2 id="day-1">Day 1</h2>
+<p>开题：</p>
+<p>T1
+有点神秘，糊了个贪心糊了个一点也不严谨的证明就开打，过了样例就扔了。</p>
+<p>T2，不是哥们，谁家 J 组 T2 扔这来了。此时是 9:15。</p>
+<p>T3，一堆团连成一个树状物求 dfs 序数量。发现每个团内是一条链。发现 AB
+性质送的，<span class="math inline">\(k=1\)</span>
+送的。暂时没思路了。</p>
+<p>T4，发现区间 <span class="math inline">\(\operatorname{lca}\)</span>
+可以 <span class="math inline">\(\Theta(n\log n+q)\)</span>，32
+分送的。</p>
+<p>T3，发现可以容斥做到 <span
+class="math inline">\(\Theta(T2^kn)\)</span>，现在有 64 分了。</p>
+<p>现在大概 10:30，已经 296 分了，看起来很赢！（flag 2）</p>
+<p>并没有立刻写，而是打算冲正解。（flag 3）</p>
+<p>然后……对着 T3 编了个树形 dp，然后…………</p>
+<p>错。修。错。修。错。修。</p>
+<p>12:20。发现 T3 假光了。</p>
+<p>删掉。删掉。删掉。不，是不是还能……</p>
+<p>还 ** 的修个 der 啊！！！拼部分分啊！！！</p>
+<p>12:52 T3 终于调出了 64 分。</p>
+<p>不测 linux 了！写 T4！12:53，12:54，12:55，12:56，</p>
+<p>写牛魔啊！看看 freopen，加了，关了，盯着表。</p>
+<p>12:57。</p>
+<hr />
+<p>100+100+64+0。</p>
+<p>大家全都 340，360 什么什么的。</p>
+<p>悬着的心终于死了。</p>
+<hr />
+<p>躺到床上。憋不住了。</p>
+<p>不断对自己说「只差个大几十分，省选翻盘还是有希望的」「CSP-S
+发挥不完全，NOIP 完全不发挥，省选必完全发挥」。</p>
+<p>尽管心里知道只是在安慰自己。</p>
+<hr />
+<p>晚上 CF 倒是回 grandmaster 了，但是谁让你 NOIP 给 CF 攒 RP
+了？？？？</p>
+<h2 id="day-2---day">Day 2 - Day ?</h2>
+<p>把 lg 签名改成了「三分联注定，七分选打拼」。</p>
+<p>CF 又被 speedforces 拽回 IM 了，看来 RP 并没有被吃（bushi</p>
+<h2 id="day">Day ?</h2>
+<p>没有挂分，也没有反向挂分。</p>
+<p>不幸中的万幸吧，省选起码还能垂死挣扎一下（？</p>
+<p>队线听人说 340，看来要翻的并没有那么多（？</p>
+<p>省选让我完全发挥好吗。我真的好想打 NOI 啊。</p>
+<hr />
+<h2 id="总结">总结</h2>
+<ul>
+<li>Flag 1：哼，没想到吧！我 NOIP
+又出这种题辣！！！你就等死吧！！！</li>
+<li>Flag
+2：不要半场开香槟好吗？不要半场开香槟好吗？？不要半场开香槟好吗？？？</li>
+<li>Flag 3：<span class="math inline">\(70+55&gt;100+15\)</span>
+这个道理你懂不懂啊？？？</li>
+</ul>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>2024-2025</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSP 2024</title>
     <url>/2024/09/27/CSP-2024/</url>
     <content><![CDATA[<p>GD-S01190/GD-S00489。</p>
@@ -82,6 +162,21 @@ src="https://cdn.luogu.com.cn/upload/image_hosting/h0d9pmrz.png" /></p>
       <categories>
         <category>游记</category>
         <category>2024-2025</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>THUPC 2024 单开记</title>
+    <url>/2024/12/12/THUPC-2024-%E5%8D%95%E5%BC%80%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="day--">Day -??</h2>
+<p>问了一下一起训练的人，没一个想打/来打的。</p>
+<p>于是喜提一缺二。</p>
+<p>队名：<code>1v3er</code></p>
+<p>队员：Djc, nullptr, nullptr</p>
+<p><del>如果你也没人组队可以考虑找我线上联机？</del></p>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>XCPC</category>
       </categories>
   </entry>
   <entry>
@@ -548,86 +643,6 @@ class="math inline">\(\Theta(n)\)</span>。</p>
       <categories>
         <category>solutions</category>
         <category>CodeForces</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>NOIP 2024</title>
-    <url>/2024/11/24/NOIP-2024/</url>
-    <content><![CDATA[<h2 id="day--">Day -??</h2>
-<p>CSP-S <span class="math inline">\(376\)</span>，GD
-rk16。也是把准考证号干到 <strong>GD-0020</strong> 了。</p>
-<p>考点：gdfz 3 考场 48 号。</p>
-<p>模拟赛打得一天比一天爆。怎么打感觉也进不了队。你见过 NOI <span
-class="math inline">\(455\)</span>，CSP-S 模拟 <span
-class="math inline">\(110\)</span>，NOIP 模拟 <span
-class="math inline">\(80\)</span>
-的吗？？？<del>好吧你见过，这是我。</del></p>
-<h2 id="day--1">Day -1</h2>
-<p>回到了抢州。</p>
-<p>试图二刷 建造军营 结果二次破防了。写牛魔，摆！（flag 1）</p>
-<h2 id="day-0">Day 0</h2>
-<p>在 CF 上发了<a
-href="https://codeforces.com/blog/entry/136683?#comment-1222411">我想 AK
-NOIP</a>。</p>
-<p>打完 NOIP 晚上还有 ABC &amp; CF 1+2：爽！！</p>
-<h2 id="day-1">Day 1</h2>
-<p>开题：</p>
-<p>T1
-有点神秘，糊了个贪心糊了个一点也不严谨的证明就开打，过了样例就扔了。</p>
-<p>T2，不是哥们，谁家 J 组 T2 扔这来了。此时是 9:15。</p>
-<p>T3，一堆团连成一个树状物求 dfs 序数量。发现每个团内是一条链。发现 AB
-性质送的，<span class="math inline">\(k=1\)</span>
-送的。暂时没思路了。</p>
-<p>T4，发现区间 <span class="math inline">\(\operatorname{lca}\)</span>
-可以 <span class="math inline">\(\Theta(n\log n+q)\)</span>，32
-分送的。</p>
-<p>T3，发现可以容斥做到 <span
-class="math inline">\(\Theta(T2^kn)\)</span>，现在有 64 分了。</p>
-<p>现在大概 10:30，已经 296 分了，看起来很赢！（flag 2）</p>
-<p>并没有立刻写，而是打算冲正解。（flag 3）</p>
-<p>然后……对着 T3 编了个树形 dp，然后…………</p>
-<p>错。修。错。修。错。修。</p>
-<p>12:20。发现 T3 假光了。</p>
-<p>删掉。删掉。删掉。不，是不是还能……</p>
-<p>还 ** 的修个 der 啊！！！拼部分分啊！！！</p>
-<p>12:52 T3 终于调出了 64 分。</p>
-<p>不测 linux 了！写 T4！12:53，12:54，12:55，12:56，</p>
-<p>写牛魔啊！看看 freopen，加了，关了，盯着表。</p>
-<p>12:57。</p>
-<hr />
-<p>100+100+64+0。</p>
-<p>大家全都 340，360 什么什么的。</p>
-<p>悬着的心终于死了。</p>
-<hr />
-<p>躺到床上。憋不住了。</p>
-<p>不断对自己说「只差个大几十分，省选翻盘还是有希望的」「CSP-S
-发挥不完全，NOIP 完全不发挥，省选必完全发挥」。</p>
-<p>尽管心里知道只是在安慰自己。</p>
-<hr />
-<p>晚上 CF 倒是回 grandmaster 了，但是谁让你 NOIP 给 CF 攒 RP
-了？？？？</p>
-<h2 id="day-2---day">Day 2 - Day ?</h2>
-<p>把 lg 签名改成了「三分联注定，七分选打拼」。</p>
-<p>CF 又被 speedforces 拽回 IM 了，看来 RP 并没有被吃（bushi</p>
-<h2 id="day">Day ?</h2>
-<p>没有挂分，也没有反向挂分。</p>
-<p>不幸中的万幸吧，省选起码还能垂死挣扎一下（？</p>
-<p>队线听人说 340，看来要翻的并没有那么多（？</p>
-<p>省选让我完全发挥好吗。我真的好想打 NOI 啊。</p>
-<hr />
-<h2 id="总结">总结</h2>
-<ul>
-<li>Flag 1：哼，没想到吧！我 NOIP
-又出这种题辣！！！你就等死吧！！！</li>
-<li>Flag
-2：不要半场开香槟好吗？不要半场开香槟好吗？？不要半场开香槟好吗？？？</li>
-<li>Flag 3：<span class="math inline">\(70+55&gt;100+15\)</span>
-这个道理你懂不懂啊？？？</li>
-</ul>
-]]></content>
-      <categories>
-        <category>游记</category>
-        <category>2024-2025</category>
       </categories>
   </entry>
 </search>
