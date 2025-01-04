@@ -1,6 +1,240 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[ABC387G] Prime Circuit</title>
+    <url>/2025/01/04/ABC387G-Prime-Circuit/</url>
+    <content><![CDATA[<h2 id="statements">Statements</h2>
+<p>给定 <span class="math inline">\(n\)</span>，求满足下列条件的 <span
+class="math inline">\(n\)</span>
+点有标号、连通、简单、无向图的数量：</p>
+<blockquote>
+<p>对于该图中任意不重复经过某条<strong>边</strong>的环，其长度都为<strong>质数</strong>。</p>
+</blockquote>
+<p>Data range：<span
+class="math inline">\(n\le2.5\times10^5\)</span>。</p>
+<p>Time limit：<span class="math inline">\(\textbf{12s}\)</span>。</p>
+<h2 id="solution">Solution</h2>
+<p>首先肯定要刻画一下这图长啥样。</p>
+<p>考虑一个边双的形状。</p>
+<blockquote>
+<p>Lemma：一个边双必然是一个环或一个单点。</p>
+<p>Proof：如果不是，那么至少有两个环。</p>
+<p>考虑随便拿出两个相交的环。那么它们肯定交于两点 <span
+class="math inline">\(x,y\)</span>（可能重合）。</p>
+<p>画个图就能得知，此时 <span class="math inline">\(x,y\)</span>
+之间存在三条互不相交的路径，设其长度为 <span
+class="math inline">\(a,b,c\)</span>。（如果 <span
+class="math inline">\(x=y\)</span>，那么有一个是 <span
+class="math inline">\(0\)</span>。）</p>
+<p>此时容易至少发现存在三个长分为 <span
+class="math inline">\(a+b,b+c,c+a\)</span> 的环。</p>
+<p>显然环长不可能为 <span
+class="math inline">\(2\)</span>，所以环长为奇（质）数，所以其和也是奇数。但又有环长之和等于
+<span class="math inline">\((a+b)+(b+c)+(c+a)=2(a+b+c)\)</span>
+是偶数，矛盾！</p>
+</blockquote>
+<p>考虑钦定所有环长为 <span
+class="math inline">\(l_1,l_2,\ldots,l_k\)</span>，然后计数：</p>
+<ul>
+<li>每个环有 <span
+class="math inline">\(\dfrac{(l_i-1)!}{2-[l_i=1]}\)</span> 种方案；</li>
+<li>将这些环连成一棵树（因为边双缩起来是树），根据<a
+href="https://oi-wiki.org/graph/prufer/#%E5%9B%BE%E8%BF%9E%E9%80%9A%E6%96%B9%E6%A1%88%E6%95%B0">这里</a>得到方案数为
+<span class="math inline">\(n^{k-2}\cdot\prod l_i\)</span>；</li>
+<li>分配环中的点，这个就是一堆组合数。</li>
+</ul>
+<p>然后就可以考虑 dp。</p>
+<p>令 <span class="math inline">\(dp_i\)</span> 表示还剩 <span
+class="math inline">\(i\)</span> 个点时，方案数乘 <span
+class="math inline">\(n^2\)</span>（这样那个幂就变成了 <span
+class="math inline">\(n^k\)</span>）的值。</p>
+<p>那么不难列出转移方程：</p>
+<p><span class="math display">\[dp_i=\sum_{\substack{(j\in\mathbb P\land
+j\ne2)\lor j=1\\i+j\le
+n}}\binom{i+j-1}{j-1}\cdot\frac{(j-1)!}{2-[j=1]}\cdot j\cdot
+n\]</span></p>
+<p>其中组合数是分配点；<span class="math inline">\(n\)</span> 是对 <span
+class="math inline">\(n^k\)</span> 的贡献。初值为 <span
+class="math inline">\(dp_n=1\)</span>；答案即为 <span
+class="math inline">\(\dfrac{dp_0}{n^2}\)</span>。</p>
+<p>由结论可知 <span class="math inline">\(|\mathbb P|=\Theta\left(\dfrac
+n{\log
+n}\right)\)</span>；所以总复杂度为 <span
+class="math inline">\(\Theta\left(\dfrac{n^2}{\log
+n}\right)\)</span>。</p>
+<p>这玩意写的时候注意一下常数就可以通过了。</p>
+<ul>
+<li>什么？你说 <span class="math inline">\(o(n^2)\)</span>
+做法？我太菜，不会。</li>
+</ul>
+<h2 id="code">Code</h2>
+<p>在 AT 机子上跑了 <span
+class="math inline">\(\text{10.66s}\)</span>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Author: YE Minghan</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PB emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PPB pop_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ALL(Name) Name.begin(),Name.end()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PII pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VI vector<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GI greater<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> MOD=<span class="number">998244353</span>,N=<span class="number">250005</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line"><span class="type">int</span> fac[N],ifac[N];</span><br><span class="line"><span class="type">int</span> dp[N];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">pw</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y=MOD<span class="number">-2</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> r=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(y)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(y&amp;<span class="number">1</span>)r=<span class="number">1ll</span>*r*x%MOD;</span><br><span class="line">		x=<span class="number">1ll</span>*x*x%MOD,y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">bool</span> p[N];</span><br><span class="line">VI S;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>),cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"><span class="comment">//	int _;cin&gt;&gt;_;while(_--)</span></span><br><span class="line"></span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	fac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)fac[i]=<span class="number">1ll</span>*fac[i<span class="number">-1</span>]*i%MOD,p[i]=<span class="number">1</span>;</span><br><span class="line">	ifac[n]=<span class="built_in">pw</span>(fac[n]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-1</span>;~i;i--)ifac[i]=(i<span class="number">+1ll</span>)*ifac[i<span class="number">+1</span>]%MOD;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">if</span>(p[i])</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=i&lt;&lt;<span class="number">1</span>;j&lt;=n;j+=i)p[j]=<span class="number">0</span>;</span><br><span class="line">	S.<span class="built_in">PB</span>(<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">3</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">if</span>(p[i])S.<span class="built_in">PB</span>(i);</span><br><span class="line">	dp[n]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-1</span>;~i;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j:S)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(i+j&gt;n)<span class="keyword">break</span>;</span><br><span class="line">			dp[i]=(dp[i]+(<span class="number">1ll</span>+(j==<span class="number">1</span>))*fac[i+j<span class="number">-1</span>]*j%MOD*dp[i+j])%MOD;</span><br><span class="line">		&#125;</span><br><span class="line">		dp[i]=<span class="number">1ll</span>*dp[i]*n%MOD*ifac[i]%MOD*(MOD<span class="number">+1</span>&gt;&gt;<span class="number">1</span>)%MOD;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="number">1ll</span>*dp[<span class="number">0</span>]*<span class="built_in">pw</span>(n,MOD<span class="number">-3</span>)%MOD&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>AtCoder</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>THUPC 2025 单开记</title>
+    <url>/2024/12/12/THUPC-2025-%E5%8D%95%E5%BC%80%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="day--">Day -?</h2>
+<p>问了一下一起训练的人，没一个想打/来打的。</p>
+<p>于是喜提一缺二。</p>
+<p>队名：<code>1v3er</code></p>
+<h2 id="day-1">Day 1</h2>
+<p>0:00 开始！</p>
+<p>一眼丁真 M 是签到，<strong>0:01</strong> 过了。</p>
+<p><del>之后就完全是跟榜了。</del></p>
+<p>然后随机扫了几眼题，看到 C 有人过，就去看 C。</p>
+<p>想了几分钟得出结论是 <span class="math inline">\(\max(\text{全局第 3
+小},\text{和 }a_x\text{ 相邻的数中的第 2 小})\)</span>。</p>
+<p>然后因为第二小写成第二大而挂一发。<strong>0:17</strong>
+改完过了。</p>
+<p>然后发现好几个题都有人过了。随机想了一会题。</p>
+<p>这个 L 为啥几分钟就有人过了？为啥我一点不会？</p>
+<p>发现 J 是「与黑点相邻的点至少与一个白点相邻」。这不直接瞎树形 dp
+吗。</p>
+<p>写完发现 WA 了。然后发现我 dp
+的东西根本不是我设的状态。<strong>0:43</strong> 改完过了。</p>
+<p>然后看了一眼 I。这不直接 <span
+class="math inline">\(\Theta(11n)\)</span> dp 吗。</p>
+<p>然后因为「打了 <span class="math inline">\(2\)</span> 局比赛，比分是
+<span class="math inline">\(10:10\)</span>」这种 corner case 而 WA
+了一发。<strong>0:55</strong> 改完过了。</p>
+<p>为啥我还是不会 L 啊？？？看着像 <span
+class="math inline">\(\Theta(\frac{n^2}w)\)</span>，但是我连个 P
+都不会？</p>
+<p>看 D。发现 <span class="math inline">\(\Theta(n\log W)\)</span>
+次分配之后一定会变成 <span class="math inline">\(n\)</span>
+个人轮流拿。</p>
+<p>那不是直接上个 <code>pq</code> 就行了吗？</p>
+<p>01:25 过样例，发现 WA 了。发现中间运算可能爆
+<code>long long</code>。改成了 <code>__int128</code>。然后 TLE 了。</p>
+<p><del>我就知道俩烙鸽过不去。。。</del></p>
+<p>发现有单调性，可以把 <code>pq</code> 换成三个
+<code>queue</code>，分别维护拿到 <span
+class="math inline">\(0\)</span>、<span
+class="math inline">\(1\)</span>、<span class="math inline">\(\ge
+2\)</span> 个的人。改改改，然后又写挂了两发。<strong>1:48</strong>
+过了。</p>
+<p>现在还剩 A, G, H, L 几个题过的人比较多。</p>
+<p>H 是大 DS，我一个人怎么可能写的动，暂时扔掉。A 题看着是神秘 DP，G
+题是神秘博弈论，L 不知道。</p>
+<p>决定想 L，然后转成了另类最小割，然后转成了二分图最大独立集。</p>
+<p>不是哥们，你 <span class="math inline">\(\Theta(n)\)</span> 个点
+<span class="math inline">\(\Theta(n^2)\)</span>
+条边（尽管可以缩起来）的图，跑牛魔匈牙利啊？</p>
+<p>然后愣了整整几分钟：WC，这不是直接 Dinic 没了吗？</p>
+<p>偷了个 Dinic 板子，然后 1A 了。此时是 <strong>2:34</strong>。</p>
+<p>看了下 G 过的人最多，遂看 G。这真好做吗？</p>
+<p>感觉需要直接想策略。然后推了半天，推出了一个看起来不太真的策略。</p>
+<p>写了一下，过样例了，奶了一口会 WA，交上去，过了！此时是
+<strong>3:39</strong>。</p>
+<p>最后 80min，决定冲 A。</p>
+<p>想了半天才转化成区间 dp，然后发现是 <span
+class="math inline">\(\Theta(n^5)\)</span> 的。虽然带了 <span
+class="math inline">\(\frac 1{12}\)</span> 的常数但显然是不可能过 <span
+class="math inline">\(150\)</span> 的。</p>
+<p>组合意义感觉优化不动，有点急了，列出了转移方程，发现可以提出一个东西出来，然后就
+<span class="math inline">\(\Theta(n^4)\)</span> 了！</p>
+<p>开写，<strong>4:53</strong> 过了样例，提交，AC 了！</p>
+<p>剩 7min 肯定啥也干不了了，遂摆烂。</p>
+<hr />
+<p>最终战绩为 <strong>8 / 17:14:16 / rk156</strong>。</p>
+<p>感觉作为单挑这个题数已经不少了。<del>如果来一两个水平差不多的队友可能就能进决赛了。</del></p>
+<p>H 题看着吓人，实际上可以简单地发现 next 的总变化不超过 <span
+class="math inline">\(\Theta(n\log n)\)</span>，可能也没那么难？</p>
+<p>总结：明年得凑齐必有我师焉再打。</p>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>XCPC</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>NOIP 2024</title>
+    <url>/2024/11/24/NOIP-2024/</url>
+    <content><![CDATA[<h2 id="day--">Day -??</h2>
+<p>CSP-S <span class="math inline">\(376\)</span>，GD
+rk16。也是把准考证号干到 <strong>GD-0020</strong> 了。</p>
+<p>考点：gdfz 3 考场 48 号。</p>
+<p>模拟赛打得一天比一天爆。怎么打感觉也进不了队。你见过 NOI <span
+class="math inline">\(455\)</span>，CSP-S 模拟 <span
+class="math inline">\(110\)</span>，NOIP 模拟 <span
+class="math inline">\(80\)</span>
+的吗？？？<del>好吧你见过，这是我。</del></p>
+<h2 id="day--1">Day -1</h2>
+<p>回到了抢州。</p>
+<p>试图二刷 建造军营 结果二次破防了。写牛魔，摆！（flag 1）</p>
+<h2 id="day-0">Day 0</h2>
+<p>在 CF 上发了<a
+href="https://codeforces.com/blog/entry/136683?#comment-1222411">我想 AK
+NOIP</a>。</p>
+<p>打完 NOIP 晚上还有 ABC &amp; CF 1+2：爽！！</p>
+<h2 id="day-1">Day 1</h2>
+<p>开题：</p>
+<p>T1
+有点神秘，糊了个贪心糊了个一点也不严谨的证明就开打，过了样例就扔了。</p>
+<p>T2，不是哥们，谁家 J 组 T2 扔这来了。此时是 9:15。</p>
+<p>T3，一堆团连成一个树状物求 dfs 序数量。发现每个团内是一条链。发现 AB
+性质送的，<span class="math inline">\(k=1\)</span>
+送的。暂时没思路了。</p>
+<p>T4，发现区间 <span class="math inline">\(\operatorname{lca}\)</span>
+可以 <span class="math inline">\(\Theta(n\log n+q)\)</span>，32
+分送的。</p>
+<p>T3，发现可以容斥做到 <span
+class="math inline">\(\Theta(T2^kn)\)</span>，现在有 64 分了。</p>
+<p>现在大概 10:30，已经 296 分了，看起来很赢！（flag 2）</p>
+<p>并没有立刻写，而是打算冲正解。（flag 3）</p>
+<p>然后……对着 T3 编了个树形 dp，然后…………</p>
+<p>错。修。错。修。错。修。</p>
+<p>12:20。发现 T3 假光了。</p>
+<p>删掉。删掉。删掉。不，是不是还能……</p>
+<p>还 ** 的修个 der 啊！！！拼部分分啊！！！</p>
+<p>12:52 T3 终于调出了 64 分。</p>
+<p>不测 linux 了！写 T4！12:53，12:54，12:55，12:56，</p>
+<p>写牛魔啊！看看 freopen，加了，关了，盯着表。</p>
+<p>12:57。</p>
+<hr />
+<p>100+100+64+0。</p>
+<p>大家全都 340，360 什么什么的。</p>
+<p>悬着的心终于死了。</p>
+<hr />
+<p>躺到床上。憋不住了。</p>
+<p>不断对自己说「只差个大几十分，省选翻盘还是有希望的」「CSP-S
+发挥不完全，NOIP 完全不发挥，省选必完全发挥」。</p>
+<p>尽管心里知道只是在安慰自己。</p>
+<hr />
+<p>晚上 CF 倒是回 grandmaster 了，但是谁让你 NOIP 给 CF 攒 RP
+了？？？？</p>
+<h2 id="day-2---day">Day 2 - Day ?</h2>
+<p>把 lg 签名改成了「三分联注定，七分选打拼」。</p>
+<p>CF 又被 speedforces 拽回 IM 了，看来 RP 并没有被吃（bushi</p>
+<h2 id="day">Day ?</h2>
+<p>没有挂分，也没有反向挂分。</p>
+<p>不幸中的万幸吧，省选起码还能垂死挣扎一下（？</p>
+<p>队线听人说 340，看来要翻的并没有那么多（？</p>
+<p>省选让我完全发挥好吗。我真的好想打 NOI 啊。</p>
+<hr />
+<h2 id="总结">总结</h2>
+<ul>
+<li>Flag 1：哼，没想到吧！我 NOIP
+又出这种题辣！！！你就等死吧！！！</li>
+<li>Flag
+2：不要半场开香槟好吗？不要半场开香槟好吗？？不要半场开香槟好吗？？？</li>
+<li>Flag 3：<span class="math inline">\(70+55&gt;100+15\)</span>
+这个道理你懂不懂啊？？？</li>
+</ul>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>2024-2025</category>
+      </categories>
+  </entry>
+  <entry>
     <title>CSP 2024</title>
     <url>/2024/09/27/CSP-2024/</url>
     <content><![CDATA[<p>GD-S01190/GD-S00489。</p>
@@ -548,163 +782,6 @@ class="math inline">\(\Theta(n)\)</span>。</p>
       <categories>
         <category>solutions</category>
         <category>CodeForces</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>NOIP 2024</title>
-    <url>/2024/11/24/NOIP-2024/</url>
-    <content><![CDATA[<h2 id="day--">Day -??</h2>
-<p>CSP-S <span class="math inline">\(376\)</span>，GD
-rk16。也是把准考证号干到 <strong>GD-0020</strong> 了。</p>
-<p>考点：gdfz 3 考场 48 号。</p>
-<p>模拟赛打得一天比一天爆。怎么打感觉也进不了队。你见过 NOI <span
-class="math inline">\(455\)</span>，CSP-S 模拟 <span
-class="math inline">\(110\)</span>，NOIP 模拟 <span
-class="math inline">\(80\)</span>
-的吗？？？<del>好吧你见过，这是我。</del></p>
-<h2 id="day--1">Day -1</h2>
-<p>回到了抢州。</p>
-<p>试图二刷 建造军营 结果二次破防了。写牛魔，摆！（flag 1）</p>
-<h2 id="day-0">Day 0</h2>
-<p>在 CF 上发了<a
-href="https://codeforces.com/blog/entry/136683?#comment-1222411">我想 AK
-NOIP</a>。</p>
-<p>打完 NOIP 晚上还有 ABC &amp; CF 1+2：爽！！</p>
-<h2 id="day-1">Day 1</h2>
-<p>开题：</p>
-<p>T1
-有点神秘，糊了个贪心糊了个一点也不严谨的证明就开打，过了样例就扔了。</p>
-<p>T2，不是哥们，谁家 J 组 T2 扔这来了。此时是 9:15。</p>
-<p>T3，一堆团连成一个树状物求 dfs 序数量。发现每个团内是一条链。发现 AB
-性质送的，<span class="math inline">\(k=1\)</span>
-送的。暂时没思路了。</p>
-<p>T4，发现区间 <span class="math inline">\(\operatorname{lca}\)</span>
-可以 <span class="math inline">\(\Theta(n\log n+q)\)</span>，32
-分送的。</p>
-<p>T3，发现可以容斥做到 <span
-class="math inline">\(\Theta(T2^kn)\)</span>，现在有 64 分了。</p>
-<p>现在大概 10:30，已经 296 分了，看起来很赢！（flag 2）</p>
-<p>并没有立刻写，而是打算冲正解。（flag 3）</p>
-<p>然后……对着 T3 编了个树形 dp，然后…………</p>
-<p>错。修。错。修。错。修。</p>
-<p>12:20。发现 T3 假光了。</p>
-<p>删掉。删掉。删掉。不，是不是还能……</p>
-<p>还 ** 的修个 der 啊！！！拼部分分啊！！！</p>
-<p>12:52 T3 终于调出了 64 分。</p>
-<p>不测 linux 了！写 T4！12:53，12:54，12:55，12:56，</p>
-<p>写牛魔啊！看看 freopen，加了，关了，盯着表。</p>
-<p>12:57。</p>
-<hr />
-<p>100+100+64+0。</p>
-<p>大家全都 340，360 什么什么的。</p>
-<p>悬着的心终于死了。</p>
-<hr />
-<p>躺到床上。憋不住了。</p>
-<p>不断对自己说「只差个大几十分，省选翻盘还是有希望的」「CSP-S
-发挥不完全，NOIP 完全不发挥，省选必完全发挥」。</p>
-<p>尽管心里知道只是在安慰自己。</p>
-<hr />
-<p>晚上 CF 倒是回 grandmaster 了，但是谁让你 NOIP 给 CF 攒 RP
-了？？？？</p>
-<h2 id="day-2---day">Day 2 - Day ?</h2>
-<p>把 lg 签名改成了「三分联注定，七分选打拼」。</p>
-<p>CF 又被 speedforces 拽回 IM 了，看来 RP 并没有被吃（bushi</p>
-<h2 id="day">Day ?</h2>
-<p>没有挂分，也没有反向挂分。</p>
-<p>不幸中的万幸吧，省选起码还能垂死挣扎一下（？</p>
-<p>队线听人说 340，看来要翻的并没有那么多（？</p>
-<p>省选让我完全发挥好吗。我真的好想打 NOI 啊。</p>
-<hr />
-<h2 id="总结">总结</h2>
-<ul>
-<li>Flag 1：哼，没想到吧！我 NOIP
-又出这种题辣！！！你就等死吧！！！</li>
-<li>Flag
-2：不要半场开香槟好吗？不要半场开香槟好吗？？不要半场开香槟好吗？？？</li>
-<li>Flag 3：<span class="math inline">\(70+55&gt;100+15\)</span>
-这个道理你懂不懂啊？？？</li>
-</ul>
-]]></content>
-      <categories>
-        <category>游记</category>
-        <category>2024-2025</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>THUPC 2025 单开记</title>
-    <url>/2024/12/12/THUPC-2025-%E5%8D%95%E5%BC%80%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="day--">Day -?</h2>
-<p>问了一下一起训练的人，没一个想打/来打的。</p>
-<p>于是喜提一缺二。</p>
-<p>队名：<code>1v3er</code></p>
-<h2 id="day-1">Day 1</h2>
-<p>0:00 开始！</p>
-<p>一眼丁真 M 是签到，<strong>0:01</strong> 过了。</p>
-<p><del>之后就完全是跟榜了。</del></p>
-<p>然后随机扫了几眼题，看到 C 有人过，就去看 C。</p>
-<p>想了几分钟得出结论是 <span class="math inline">\(\max(\text{全局第 3
-小},\text{和 }a_x\text{ 相邻的数中的第 2 小})\)</span>。</p>
-<p>然后因为第二小写成第二大而挂一发。<strong>0:17</strong>
-改完过了。</p>
-<p>然后发现好几个题都有人过了。随机想了一会题。</p>
-<p>这个 L 为啥几分钟就有人过了？为啥我一点不会？</p>
-<p>发现 J 是「与黑点相邻的点至少与一个白点相邻」。这不直接瞎树形 dp
-吗。</p>
-<p>写完发现 WA 了。然后发现我 dp
-的东西根本不是我设的状态。<strong>0:43</strong> 改完过了。</p>
-<p>然后看了一眼 I。这不直接 <span
-class="math inline">\(\Theta(11n)\)</span> dp 吗。</p>
-<p>然后因为「打了 <span class="math inline">\(2\)</span> 局比赛，比分是
-<span class="math inline">\(10:10\)</span>」这种 corner case 而 WA
-了一发。<strong>0:55</strong> 改完过了。</p>
-<p>为啥我还是不会 L 啊？？？看着像 <span
-class="math inline">\(\Theta(\frac{n^2}w)\)</span>，但是我连个 P
-都不会？</p>
-<p>看 D。发现 <span class="math inline">\(\Theta(n\log W)\)</span>
-次分配之后一定会变成 <span class="math inline">\(n\)</span>
-个人轮流拿。</p>
-<p>那不是直接上个 <code>pq</code> 就行了吗？</p>
-<p>01:25 过样例，发现 WA 了。发现中间运算可能爆
-<code>long long</code>。改成了 <code>__int128</code>。然后 TLE 了。</p>
-<p><del>我就知道俩烙鸽过不去。。。</del></p>
-<p>发现有单调性，可以把 <code>pq</code> 换成三个
-<code>queue</code>，分别维护拿到 <span
-class="math inline">\(0\)</span>、<span
-class="math inline">\(1\)</span>、<span class="math inline">\(\ge
-2\)</span> 个的人。改改改，然后又写挂了两发。<strong>1:48</strong>
-过了。</p>
-<p>现在还剩 A, G, H, L 几个题过的人比较多。</p>
-<p>H 是大 DS，我一个人怎么可能写的动，暂时扔掉。A 题看着是神秘 DP，G
-题是神秘博弈论，L 不知道。</p>
-<p>决定想 L，然后转成了另类最小割，然后转成了二分图最大独立集。</p>
-<p>不是哥们，你 <span class="math inline">\(\Theta(n)\)</span> 个点
-<span class="math inline">\(\Theta(n^2)\)</span>
-条边（尽管可以缩起来）的图，跑牛魔匈牙利啊？</p>
-<p>然后愣了整整几分钟：WC，这不是直接 Dinic 没了吗？</p>
-<p>偷了个 Dinic 板子，然后 1A 了。此时是 <strong>2:34</strong>。</p>
-<p>看了下 G 过的人最多，遂看 G。这真好做吗？</p>
-<p>感觉需要直接想策略。然后推了半天，推出了一个看起来不太真的策略。</p>
-<p>写了一下，过样例了，奶了一口会 WA，交上去，过了！此时是
-<strong>3:39</strong>。</p>
-<p>最后 80min，决定冲 A。</p>
-<p>想了半天才转化成区间 dp，然后发现是 <span
-class="math inline">\(\Theta(n^5)\)</span> 的。虽然带了 <span
-class="math inline">\(\frac 1{12}\)</span> 的常数但显然是不可能过 <span
-class="math inline">\(150\)</span> 的。</p>
-<p>组合意义感觉优化不动，有点急了，列出了转移方程，发现可以提出一个东西出来，然后就
-<span class="math inline">\(\Theta(n^4)\)</span> 了！</p>
-<p>开写，<strong>4:53</strong> 过了样例，提交，AC 了！</p>
-<p>剩 7min 肯定啥也干不了了，遂摆烂。</p>
-<hr />
-<p>最终战绩为 <strong>8 / 17:14:16 / rk156</strong>。</p>
-<p>感觉作为单挑这个题数已经不少了。<del>如果来一两个水平差不多的队友可能就能进决赛了。</del></p>
-<p>H 题看着吓人，实际上可以简单地发现 next 的总变化不超过 <span
-class="math inline">\(\Theta(n\log n)\)</span>，可能也没那么难？</p>
-<p>总结：明年得凑齐必有我师焉再打。</p>
-]]></content>
-      <categories>
-        <category>游记</category>
-        <category>XCPC</category>
       </categories>
   </entry>
 </search>

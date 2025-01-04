@@ -1,8 +1,9 @@
-http://yeminghan2021.github.io/2024/12/12/THUPC-2025-%E5%8D%95%E5%BC%80%E8%AE%B0/
-http://yeminghan2021.github.io/2024/11/24/NOIP-2024/
-http://yeminghan2021.github.io/2024/10/29/duel-%E8%AE%B0/
-http://yeminghan2021.github.io/2024/09/27/CSP-2024/
+http://yeminghan2021.github.io/2025/01/04/ABC387G-Prime-Circuit/
 http://yeminghan2021.github.io/2024/09/27/ARC-%E7%9E%8E%E5%81%9A/
+http://yeminghan2021.github.io/2024/09/27/CSP-2024/
+http://yeminghan2021.github.io/2024/11/24/NOIP-2024/
+http://yeminghan2021.github.io/2024/12/12/THUPC-2025-%E5%8D%95%E5%BC%80%E8%AE%B0/
+http://yeminghan2021.github.io/2024/10/29/duel-%E8%AE%B0/
 http://yeminghan2021.github.io/about/index.html
 http://yeminghan2021.github.io/categories/index.html
 http://yeminghan2021.github.io/
