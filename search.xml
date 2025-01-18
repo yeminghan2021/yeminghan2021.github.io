@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[ABC389G] Odd Even Graph</title>
+    <url>/2025/01/18/ABC389G-Odd-Even-Graph/</url>
+    <content><![CDATA[<h2 id="statement">Statement</h2>
+<p>给定偶数 <span class="math inline">\(n\)</span>，对于 <span
+class="math inline">\(i=n-1,n,\ldots,\frac{n(n-1)}2\)</span>
+解决以下问题：</p>
+<blockquote>
+<p>求满足以下条件的 <span class="math inline">\(n\)</span> 点 <span
+class="math inline">\(i\)</span> 边无向连通简单图数量：</p>
+<ul>
+<li>到 <span class="math inline">\(1\)</span>
+的最短路为奇数的结点个数等于到 <span class="math inline">\(1\)</span>
+的最短路为偶数的结点个数。</li>
+</ul>
+</blockquote>
+<p>Data range：<span class="math inline">\(n\le 30\)</span>，5s。</p>
+<h2 id="solution">Solution</h2>
+<p>考虑按最短路一层层 dp。看看需要记什么：</p>
+<ul>
+<li>当前层的最短路 <span class="math inline">\(i\)</span>；</li>
+<li>目前为止扩展到的点数 <span class="math inline">\(j\)</span>；</li>
+<li>当前偶奇最短路数量之差 <span class="math inline">\(k\)</span>；</li>
+<li>当前层结点个数 <span
+class="math inline">\(l\)</span>（转移时要用）；</li>
+<li>目前为止连的边数 <span class="math inline">\(m\)</span>。</li>
+</ul>
+<p>那么就得到了 <span class="math inline">\(dp_{i,j,k,l,m}\)</span>
+的状态。</p>
+<p>显然初值为 <span
+class="math inline">\(dp_{0,1,1,1,0}=1\)</span>，答案为 <span
+class="math inline">\(dp_{*,n,0,*,i}\)</span>；考虑从 <span
+class="math inline">\(dp_{i,j,k,l,m}\)</span> 转移。</p>
+<p>枚举下一层的点数 <span class="math inline">\(o\)</span> 和新连的边数
+<span class="math inline">\(p\)</span>，则转移到 <span
+class="math inline">\(dp_{i+1,j+o,k+(-1)^{i+1}\cdot
+o,o,m+p}\)</span>。考虑转移系数：</p>
+<ul>
+<li>有 <span class="math inline">\(\binom{n-j}o\)</span> 种方法选择这
+<span class="math inline">\(o\)</span> 个点；</li>
+<li>显然第 <span class="math inline">\(i-1\)</span>
+层以前不可能向新层连边；那么相当于第 <span
+class="math inline">\(i\)</span> 层的第 <span
+class="math inline">\(l\)</span> 个点和新层的 <span
+class="math inline">\(o\)</span> 个点加上新层内部连的边一共连 <span
+class="math inline">\(p\)</span> 条的方案数，记为 <span
+class="math inline">\(f_{l,o,p}\)</span>。</li>
+</ul>
+<p>那么转移系数就是 <span class="math inline">\(\binom{n-j}o\cdot
+f_{l,o,p}\)</span>。</p>
+<p>下面计算 <span class="math inline">\(f\)</span> 值，考虑 <span
+class="math inline">\(f_{x,y,z}\)</span>。</p>
+<p>枚举新层内部的边数（显然这里没有任何限制），那么设 <span
+class="math inline">\(g_{x,y,z}\)</span> 为 <span
+class="math inline">\(i,i+1\)</span> 层各有 <span
+class="math inline">\(x,y\)</span> 个点时，之间连 <span
+class="math inline">\(z\)</span> 条边的方案数，则有</p>
+<p><span
+class="math display">\[f_{x,y,z}=\sum_{i=0}^{y(y-1)/2}\binom{y(y-1)/2}ig_{x,y,z-i}\]</span></p>
+<p>（此处 <span class="math inline">\(i\)</span>
+仅为循环变量，与状态里的 <span class="math inline">\(i\)</span>
+无关）</p>
+<p>但是注意，不同层连边有限制——如果 <span
+class="math inline">\(i+1\)</span>
+层一个点一条边也没往外连，那么它的最短路就 <span
+class="math inline">\(&gt;i+1\)</span>
+了。所以容斥，枚举一条边也没连的点：</p>
+<p><span class="math display">\[g_{x,y,z}=\sum_{i=0}^y(-1)^i\binom
+yi\binom{x(y-i)}z\]</span></p>
+<p>于是就 dp 完了。</p>
+<p>算下时间复杂度：<span class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span>
+还有组合数的预处理显然可以忽略掉。转移时，可以发现 <span
+class="math inline">\(i,j,k,l,o\)</span> 都是 <span
+class="math inline">\(O(n)\)</span>，<span
+class="math inline">\(m\)</span> 和 <span
+class="math inline">\(p\)</span> 是 <span
+class="math inline">\(O(n^2)\)</span>，所以总复杂度为 <span
+class="math inline">\(O(n^9)\)</span>。</p>
+<p>这东西一看就带着一个几百分之一的常数，写的精细一点就过了。</p>
+<h2 id="code">Code</h2>
+<p>（3.11s/87mb）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Author: YE Minghan</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PB emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PPB pop_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ALL(Name) Name.begin(),Name.end()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PII pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VI vector<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GI greater<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">31</span>;</span><br><span class="line"><span class="type">int</span> n,MOD;</span><br><span class="line"><span class="type">int</span> dp[<span class="number">2</span>][N][N&lt;&lt;<span class="number">1</span>][N][N*N&gt;&gt;<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> C[N*N&gt;&gt;<span class="number">1</span>][N*N&gt;&gt;<span class="number">1</span>],f[N][N][N*N&gt;&gt;<span class="number">1</span>],g[N][N][N*N&gt;&gt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>),cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"><span class="comment">//	int _;cin&gt;&gt;_;while(_--)</span></span><br><span class="line"></span><br><span class="line">	cin&gt;&gt;n&gt;&gt;MOD;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=n*n&gt;&gt;<span class="number">1</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		C[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=i;j++)C[i][j]=(C[i<span class="number">-1</span>][j]+C[i<span class="number">-1</span>][j<span class="number">-1</span>])%MOD;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">0</span>;x&lt;n;x++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> y=<span class="number">0</span>;y&lt;=n-x;y++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> z=y;z&lt;=x*y;z++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=y&amp;&amp;(y-i)*x&gt;=z;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> t=<span class="number">1ll</span>*C[y][i]*C[(y-i)*x][z]%MOD;</span><br><span class="line">					g[x][y][z]=(g[x][y][z]+(i&amp;<span class="number">1</span>?MOD-t:t))%MOD;</span><br><span class="line">				&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">0</span>;x&lt;n;x++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> y=<span class="number">0</span>;y&lt;=n-x;y++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> z=y,t=y*(y<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;z&lt;=x*y+t;z++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="built_in">max</span>(<span class="number">0</span>,z-x*y);i&lt;=<span class="built_in">min</span>(t,z);i++)</span><br><span class="line">					f[x][y][z]=(f[x][y][z]<span class="number">+1ll</span>*C[t][i]*g[x][y][z-i])%MOD;</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">1</span>][N<span class="number">+1</span>][<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=i<span class="number">+1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k=N-j;k&lt;=N+j;k++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">0</span>;l&lt;=j-i;l++)</span><br><span class="line">					<span class="keyword">for</span>(<span class="type">int</span> m=j<span class="number">-1</span>;m&lt;=j*(j<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;m++)</span><br><span class="line">						dp[<span class="number">0</span>][j][k][l][m]=dp[<span class="number">1</span>][j][k][l][m],dp[<span class="number">1</span>][j][k][l][m]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=i<span class="number">+1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k=N-j;k&lt;=N+j;k++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">0</span>;l&lt;=j-i;l++)</span><br><span class="line">					<span class="keyword">for</span>(<span class="type">int</span> m=j<span class="number">-1</span>;m&lt;=j*(j<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;m++)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="type">int</span> cr=dp[<span class="number">0</span>][j][k][l][m];</span><br><span class="line">						<span class="keyword">if</span>(!cr)<span class="keyword">continue</span>;</span><br><span class="line">						<span class="keyword">for</span>(<span class="type">int</span> o=<span class="number">0</span>;o&lt;=n-j;o++)</span><br><span class="line">							<span class="keyword">for</span>(<span class="type">int</span> p=o;p&lt;=l*o+(o*(o<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>);p++)</span><br><span class="line">							&#123;</span><br><span class="line">								<span class="type">int</span> &amp;nxt=dp[<span class="number">1</span>][j+o][k+(i&amp;<span class="number">1</span>?o:-o)][o][m+p];</span><br><span class="line">								nxt=(nxt<span class="number">+1ll</span>*C[n-j][o]*f[l][o][p]%MOD*cr)%MOD;</span><br><span class="line">							&#125;</span><br><span class="line">					&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-1</span>;i&lt;=n*(n<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;i++)</span><br><span class="line">		cout&lt;&lt;dp[<span class="number">1</span>][n][N][<span class="number">0</span>][i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>AtCoder</category>
+      </categories>
+  </entry>
+  <entry>
     <title>[ABC387G] Prime Circuit</title>
     <url>/2025/01/04/ABC387G-Prime-Circuit/</url>
     <content><![CDATA[<h2 id="statements">Statements</h2>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Georgia:300,300italic,400,400italic,700,700italic%7CFira+code:300,300italic,400,400italic,700,700italic%7CConsolas:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"yeminghan2021.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":3,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="赛时访问负数下标调半天。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[ABC389G] Odd Even Graph">
+<meta property="og:url" content="http://yeminghan2021.github.io/2025/01/18/ABC389G-Odd-Even-Graph/index.html">
+<meta property="og:site_name" content="ymh&#39;s bloggie">
+<meta property="og:description" content="赛时访问负数下标调半天。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-18T13:46:03.000Z">
+<meta property="article:modified_time" content="2025-01-18T14:21:36.514Z">
+<meta property="article:author" content="Ye Minghan">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://yeminghan2021.github.io/2025/01/18/ABC389G-Odd-Even-Graph/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://yeminghan2021.github.io/2025/01/18/ABC389G-Odd-Even-Graph/","path":"2025/01/18/ABC389G-Odd-Even-Graph/","title":"[ABC389G] Odd Even Graph"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>[ABC389G] Odd Even Graph | ymh's bloggie</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">ymh's bloggie</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">If you're weak, just practise more.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#statement"><span class="nav-number">1.</span> <span class="nav-text">Statement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">2.</span> <span class="nav-text">Solution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#code"><span class="nav-number">3.</span> <span class="nav-text">Code</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ye Minghan"
+      src="https://cdn.luogu.com.cn/upload/usericon/549499.png">
+  <p class="site-author-name" itemprop="name">Ye Minghan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yeminghan2021" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yeminghan2021" rel="noopener me" target="_blank">GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.luogu.com.cn/user/549499" title="Luogu → https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;user&#x2F;549499" rel="noopener me" target="_blank">Luogu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://codeforces.com/profile/yeminghan" title="CodeForces → https:&#x2F;&#x2F;codeforces.com&#x2F;profile&#x2F;yeminghan" rel="noopener me" target="_blank">CodeForces</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yeminghan2021.github.io/2025/01/18/ABC389G-Odd-Even-Graph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://cdn.luogu.com.cn/upload/usericon/549499.png">
+      <meta itemprop="name" content="Ye Minghan">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ymh's bloggie">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="[ABC389G] Odd Even Graph | ymh's bloggie">
+      <meta itemprop="description" content="赛时访问负数下标调半天。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          [ABC389G] Odd Even Graph
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-18 21:46:03 / 修改时间：22:21:36" itemprop="dateCreated datePublished" datetime="2025-01-18T21:46:03+08:00">2025-01-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/solutions/" itemprop="url" rel="index"><span itemprop="name">solutions</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/solutions/AtCoder/" itemprop="url" rel="index"><span itemprop="name">AtCoder</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+            <div class="post-description">赛时访问负数下标调半天。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="statement">Statement</h2>
+<p>给定偶数 <span class="math inline">\(n\)</span>，对于 <span
+class="math inline">\(i=n-1,n,\ldots,\frac{n(n-1)}2\)</span>
+解决以下问题：</p>
+<blockquote>
+<p>求满足以下条件的 <span class="math inline">\(n\)</span> 点 <span
+class="math inline">\(i\)</span> 边无向连通简单图数量：</p>
+<ul>
+<li>到 <span class="math inline">\(1\)</span>
+的最短路为奇数的结点个数等于到 <span class="math inline">\(1\)</span>
+的最短路为偶数的结点个数。</li>
+</ul>
+</blockquote>
+<p>Data range：<span class="math inline">\(n\le 30\)</span>，5s。</p>
+<h2 id="solution">Solution</h2>
+<p>考虑按最短路一层层 dp。看看需要记什么：</p>
+<ul>
+<li>当前层的最短路 <span class="math inline">\(i\)</span>；</li>
+<li>目前为止扩展到的点数 <span class="math inline">\(j\)</span>；</li>
+<li>当前偶奇最短路数量之差 <span class="math inline">\(k\)</span>；</li>
+<li>当前层结点个数 <span
+class="math inline">\(l\)</span>（转移时要用）；</li>
+<li>目前为止连的边数 <span class="math inline">\(m\)</span>。</li>
+</ul>
+<p>那么就得到了 <span class="math inline">\(dp_{i,j,k,l,m}\)</span>
+的状态。</p>
+<p>显然初值为 <span
+class="math inline">\(dp_{0,1,1,1,0}=1\)</span>，答案为 <span
+class="math inline">\(dp_{*,n,0,*,i}\)</span>；考虑从 <span
+class="math inline">\(dp_{i,j,k,l,m}\)</span> 转移。</p>
+<p>枚举下一层的点数 <span class="math inline">\(o\)</span> 和新连的边数
+<span class="math inline">\(p\)</span>，则转移到 <span
+class="math inline">\(dp_{i+1,j+o,k+(-1)^{i+1}\cdot
+o,o,m+p}\)</span>。考虑转移系数：</p>
+<ul>
+<li>有 <span class="math inline">\(\binom{n-j}o\)</span> 种方法选择这
+<span class="math inline">\(o\)</span> 个点；</li>
+<li>显然第 <span class="math inline">\(i-1\)</span>
+层以前不可能向新层连边；那么相当于第 <span
+class="math inline">\(i\)</span> 层的第 <span
+class="math inline">\(l\)</span> 个点和新层的 <span
+class="math inline">\(o\)</span> 个点加上新层内部连的边一共连 <span
+class="math inline">\(p\)</span> 条的方案数，记为 <span
+class="math inline">\(f_{l,o,p}\)</span>。</li>
+</ul>
+<p>那么转移系数就是 <span class="math inline">\(\binom{n-j}o\cdot
+f_{l,o,p}\)</span>。</p>
+<p>下面计算 <span class="math inline">\(f\)</span> 值，考虑 <span
+class="math inline">\(f_{x,y,z}\)</span>。</p>
+<p>枚举新层内部的边数（显然这里没有任何限制），那么设 <span
+class="math inline">\(g_{x,y,z}\)</span> 为 <span
+class="math inline">\(i,i+1\)</span> 层各有 <span
+class="math inline">\(x,y\)</span> 个点时，之间连 <span
+class="math inline">\(z\)</span> 条边的方案数，则有</p>
+<p><span
+class="math display">\[f_{x,y,z}=\sum_{i=0}^{y(y-1)/2}\binom{y(y-1)/2}ig_{x,y,z-i}\]</span></p>
+<p>（此处 <span class="math inline">\(i\)</span>
+仅为循环变量，与状态里的 <span class="math inline">\(i\)</span>
+无关）</p>
+<p>但是注意，不同层连边有限制——如果 <span
+class="math inline">\(i+1\)</span>
+层一个点一条边也没往外连，那么它的最短路就 <span
+class="math inline">\(&gt;i+1\)</span>
+了。所以容斥，枚举一条边也没连的点：</p>
+<p><span class="math display">\[g_{x,y,z}=\sum_{i=0}^y(-1)^i\binom
+yi\binom{x(y-i)}z\]</span></p>
+<p>于是就 dp 完了。</p>
+<p>算下时间复杂度：<span class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span>
+还有组合数的预处理显然可以忽略掉。转移时，可以发现 <span
+class="math inline">\(i,j,k,l,o\)</span> 都是 <span
+class="math inline">\(O(n)\)</span>，<span
+class="math inline">\(m\)</span> 和 <span
+class="math inline">\(p\)</span> 是 <span
+class="math inline">\(O(n^2)\)</span>，所以总复杂度为 <span
+class="math inline">\(O(n^9)\)</span>。</p>
+<p>这东西一看就带着一个几百分之一的常数，写的精细一点就过了。</p>
+<h2 id="code">Code</h2>
+<p>（3.11s/87mb）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Author: YE Minghan</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PB emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PPB pop_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ALL(Name) Name.begin(),Name.end()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PII pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VI vector<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GI greater<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">31</span>;</span><br><span class="line"><span class="type">int</span> n,MOD;</span><br><span class="line"><span class="type">int</span> dp[<span class="number">2</span>][N][N&lt;&lt;<span class="number">1</span>][N][N*N&gt;&gt;<span class="number">1</span>];</span><br><span class="line"><span class="type">int</span> C[N*N&gt;&gt;<span class="number">1</span>][N*N&gt;&gt;<span class="number">1</span>],f[N][N][N*N&gt;&gt;<span class="number">1</span>],g[N][N][N*N&gt;&gt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>),cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"><span class="comment">//	int _;cin&gt;&gt;_;while(_--)</span></span><br><span class="line"></span><br><span class="line">	cin&gt;&gt;n&gt;&gt;MOD;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=n*n&gt;&gt;<span class="number">1</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		C[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=i;j++)C[i][j]=(C[i<span class="number">-1</span>][j]+C[i<span class="number">-1</span>][j<span class="number">-1</span>])%MOD;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">0</span>;x&lt;n;x++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> y=<span class="number">0</span>;y&lt;=n-x;y++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> z=y;z&lt;=x*y;z++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;=y&amp;&amp;(y-i)*x&gt;=z;i++)</span><br><span class="line">				&#123;</span><br><span class="line">					<span class="type">int</span> t=<span class="number">1ll</span>*C[y][i]*C[(y-i)*x][z]%MOD;</span><br><span class="line">					g[x][y][z]=(g[x][y][z]+(i&amp;<span class="number">1</span>?MOD-t:t))%MOD;</span><br><span class="line">				&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> x=<span class="number">0</span>;x&lt;n;x++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> y=<span class="number">0</span>;y&lt;=n-x;y++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> z=y,t=y*(y<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;z&lt;=x*y+t;z++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> i=<span class="built_in">max</span>(<span class="number">0</span>,z-x*y);i&lt;=<span class="built_in">min</span>(t,z);i++)</span><br><span class="line">					f[x][y][z]=(f[x][y][z]<span class="number">+1ll</span>*C[t][i]*g[x][y][z-i])%MOD;</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">1</span>][N<span class="number">+1</span>][<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=i<span class="number">+1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k=N-j;k&lt;=N+j;k++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">0</span>;l&lt;=j-i;l++)</span><br><span class="line">					<span class="keyword">for</span>(<span class="type">int</span> m=j<span class="number">-1</span>;m&lt;=j*(j<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;m++)</span><br><span class="line">						dp[<span class="number">0</span>][j][k][l][m]=dp[<span class="number">1</span>][j][k][l][m],dp[<span class="number">1</span>][j][k][l][m]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=i<span class="number">+1</span>;j&lt;=n;j++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k=N-j;k&lt;=N+j;k++)</span><br><span class="line">				<span class="keyword">for</span>(<span class="type">int</span> l=<span class="number">0</span>;l&lt;=j-i;l++)</span><br><span class="line">					<span class="keyword">for</span>(<span class="type">int</span> m=j<span class="number">-1</span>;m&lt;=j*(j<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;m++)</span><br><span class="line">					&#123;</span><br><span class="line">						<span class="type">int</span> cr=dp[<span class="number">0</span>][j][k][l][m];</span><br><span class="line">						<span class="keyword">if</span>(!cr)<span class="keyword">continue</span>;</span><br><span class="line">						<span class="keyword">for</span>(<span class="type">int</span> o=<span class="number">0</span>;o&lt;=n-j;o++)</span><br><span class="line">							<span class="keyword">for</span>(<span class="type">int</span> p=o;p&lt;=l*o+(o*(o<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>);p++)</span><br><span class="line">							&#123;</span><br><span class="line">								<span class="type">int</span> &amp;nxt=dp[<span class="number">1</span>][j+o][k+(i&amp;<span class="number">1</span>?o:-o)][o][m+p];</span><br><span class="line">								nxt=(nxt<span class="number">+1ll</span>*C[n-j][o]*f[l][o][p]%MOD*cr)%MOD;</span><br><span class="line">							&#125;</span><br><span class="line">					&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n<span class="number">-1</span>;i&lt;=n*(n<span class="number">-1</span>)&gt;&gt;<span class="number">1</span>;i++)</span><br><span class="line">		cout&lt;&lt;dp[<span class="number">1</span>][n][N][<span class="number">0</span>][i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	cout&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/01/04/ABC387G-Prime-Circuit/" rel="prev" title="[ABC387G] Prime Circuit">
+                  <i class="fa fa-angle-left"></i> [ABC387G] Prime Circuit
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  
+  <div class="comments giscus-container">
+  </div>
+  
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ye Minghan</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="giscus" type="application/json">{"enable":true,"repo":"yeminghan2021/yeminghan2021.github.io","repo_id":"R_kgDOM33xXQ","category":"Announcements","category_id":"DIC_kwDOM33xXc4Ci188","mapping":"pathname","strict":0,"reactions_enabled":1,"emit_metadata":0,"theme":"preferred_color_scheme","lang":"zh-CN","crossorigin":"anonymous","input_position":"top","loading":"lazy"}</script>
+
+<script>
+document.addEventListener('page:loaded', () => {
+  if (!CONFIG.page.comments) return;
+
+  NexT.utils.loadComments('.giscus-container')
+    .then(() => NexT.utils.getScript('https://giscus.app/client.js', {
+      attributes: {
+        async                   : true,
+        crossOrigin             : 'anonymous',
+        'data-repo'             : CONFIG.giscus.repo,
+        'data-repo-id'          : CONFIG.giscus.repo_id,
+        'data-category'         : CONFIG.giscus.category,
+        'data-category-id'      : CONFIG.giscus.category_id,
+        'data-mapping'          : CONFIG.giscus.mapping,
+        'data-strict'           : CONFIG.giscus.strict,
+        'data-reactions-enabled': CONFIG.giscus.reactions_enabled,
+        'data-emit-metadata'    : CONFIG.giscus.emit_metadata,
+        'data-theme'            : CONFIG.giscus.theme,
+        'data-lang'             : CONFIG.giscus.lang,
+        'data-input-position'   : CONFIG.giscus.input_position,
+        'data-loading'          : CONFIG.giscus.loading
+      },
+      parentNode: document.querySelector('.giscus-container')
+    }));
+});
+</script>
+
+</body>
+</html>
