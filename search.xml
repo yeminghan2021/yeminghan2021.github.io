@@ -166,6 +166,182 @@ n}\right)\)</span>。</p>
       </categories>
   </entry>
   <entry>
+    <title>(P+N)WC 2025 旅游记</title>
+    <url>/2025/01/21/P-N-WC-2025/</url>
+    <content><![CDATA[<h2 id="part.-0">Part. 0</h2>
+<h3 id="section">1.12</h3>
+<p>到达了 <del>浙 D 市</del> 绍兴市。</p>
+<p>晚上 arc190，D 题编出来思路了但是细节没想对。喜提 rk76。</p>
+<h3 id="section-1">1.13</h3>
+<p>参观了鲁迅故里。</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/25st41pp.png" /></p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/kkn5qhdv.png" /></p>
+<p><span class="math display">\[\scriptsize\textsf{Fig. 1/2
+鲁迅故居}\]</span></p>
+<blockquote>
+<p>不必说碧绿的菜畦，光滑的石井栏，高大的皂荚树，紫红的桑椹；……</p>
+</blockquote>
+<p><del>擦，怎么扯到 whk 上面去了。</del></p>
+<h2 id="part.-1-pkuwc">Part. 1 PKUWC</h2>
+<h3 id="day-1">1.14 / day 1</h3>
+<p>开场。先看 A，这题我以前研究过 <span
+class="math inline">\(a=b\)</span> 的 case 啊？蒙了个式子就过了。</p>
+<p>看 BC。B 这看着是大 DS，C 这看着是大 SG 啊。</p>
+<p>B 先转成了一坨带修二维数点，怼着 <span class="math inline">\(\mathcal
+O(n\log^3 n+q\log^2 n)\)</span> 死活优化不下去。</p>
+<p>最后还是想了一坨分块套回滚莫队套链表 <span
+class="math inline">\(\mathcal O(n\sqrt q+q\sqrt n)\)</span>
+才敢写了。过了。</p>
+<p>然后 C 试图想 AB 性质无果，于是 <span
+class="math inline">\(20\)</span> 分走人。</p>
+<p><span class="math inline">\(100+100+20=220\)</span>。（还行。）</p>
+<p>晚上 whk 去了。</p>
+<h3 id="day-2">1.15 / day 2</h3>
+<p>开场。把 ABC 都看了一遍。A 是神秘交互题，B 是神秘最优化，C
+是神秘数论题。</p>
+<p>先给 C 题瞎写了点 dp，在 1h 时获得了 <span
+class="math inline">\(44\)</span> 分，然后把 C 扔了。</p>
+<p>这 B 题除了 <span class="math inline">\(c=1\)</span> 的 <span
+class="math inline">\(11\)</span> 分看着很不可做啊……先去开 A 了。</p>
+<p>然后……</p>
+<p>在 3.5h 时才获得了 <span class="math inline">\(56\)</span> 分。</p>
+<p>然后写了 B 题 <span class="math inline">\(11\)</span> 分。</p>
+<p>然后把 A 题优化到了 <span class="math inline">\(70\)</span> 分。</p>
+<p>然后……</p>
+<p><span
+class="math inline">\(70+11+44=125\)</span>。（你这打得什么几把啊？？？noip
+2024 没考吗？？？怎么又又又死怼着一个题想啊？？？）</p>
+<p>出来发现 B 题人均分是 <span
+class="math inline">\([73,100]\)</span>。</p>
+<blockquote>
+<p>这 B 题除了 <span class="math inline">\(c=1\)</span> 的 <span
+class="math inline">\(11\)</span> 分看着很不可做啊……</p>
+</blockquote>
+<p>打了三次
+PKU*C，每次都写了一个分块（d2t3；d2t2；d1t2），每次都有一个题把我创飞（d2t3；d1t1；d2t1）。</p>
+<p>晚上仍然在 whk。</p>
+<h2 id="part.-32">Part. 3/2</h2>
+<h3 id="section-2">1.16</h3>
+<p>啥也没干。</p>
+<h2 id="part.-2-noiwc">Part. 2 NOIWC</h2>
+<h3 id="registration-day">1.17 / registration day</h3>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/ntm1u39a.png" /></p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/ugaiwfce.png" /></p>
+<p><span class="math display">\[\scriptsize\textsf{Fig. 3/4
+绍兴一中龙山书院}\]</span></p>
+<p>宿舍房号是 6518。成员：zhr, yfx, ymh, yzn。（年级分别是
+8/9/10/11）</p>
+<p>拍合照时被 drc
+等介绍了图寻。<del>正好我已经熟背全国车牌歌</del>，于是欣然入坑。</p>
+<p>饭非常好吃！</p>
+<p>晚上开幕式。只记得 dzd 讲话的时候盯着晋国大臣笑不活了（</p>
+<h3 id="lecture-day-1">1.18 / lecture day 1</h3>
+<p>怎么起床铃是《一剪梅》。豪庭！</p>
+<p>上午是 zky 的随机化。一车子人在要签名。感觉 rand 的力量很震撼！</p>
+<p>下午是 sjy 的图连通性。有点掉线了 T_T</p>
+<p><del>晚上忘了在干啥。</del> 哦原来在打 ABC。G
+题访问负数下标调半天，最后 98:49 极限 AK，别的忘了。</p>
+<h3 id="lecture-day-2">1.19 / lecture day 2</h3>
+<p>《一剪梅》豪庭！</p>
+<p>后面的讲课基本都在半在线听课，或者在水群，或者在图寻，或者在
+graphomata，或者在看其他人干上述之类的事情。</p>
+<p>中午和晚上好像在摆。</p>
+<p>哦哦对了拿到了密码条。<del>诶 WC 丢这玩意是扣几分来着？</del></p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/c94rmdoj.png" /></p>
+<p><span class="math display">\[\scriptsize\textsf{Fig. 5
+密码条}\]</span></p>
+<h3 id="contest-veriaty-show-day">1.20 / contest &amp; veriaty show
+day</h3>
+<p>《一剪梅》豪庭！</p>
+<p>八点多去试机。求你别放 noip 2024 了行吗？？？？？几乎啥也没写。</p>
+<p>旁边居然是 QH 老哥。看起来心态非常的好。</p>
+<p>试机后到再次进场前一直在考场外随机游走，单向 / 双向面积了 <span
+class="math inline">\(\mathcal O(1)\)</span> 个人，再次进场。</p>
+<p>开 A，看着像 case work 题。啊编出了充要条件。写。selfeval，怎么 <span
+class="math inline">\(65\)</span> 分？哦哦原来没
+<code>sort</code>，改完过了。</p>
+<p>开 B，这什么玩意？加法踩 xor 上天？还要构造 <span
+class="math inline">\(m\)</span> 种方案？先看 C。</p>
+<p>开 C，看着像不可做题。</p>
+<p>先想点部分分：诶我 C 怎么会 <span class="math inline">\(\mathcal
+O(nV)\)</span> dp 了？离散化一下不成 <span
+class="math inline">\(\mathcal O(n^2)\)</span>
+了？半信半疑地写了下，过了 selfeval。</p>
+<p>WC 的 C 题我是能轻松会 <span class="math inline">\(40\)</span>
+的？</p>
+<p>诶不是等等，这真不是上个线段树就完了吗？想了半天想不出问题，于是不信全疑地开写，心想就写一下让我死心就得了。</p>
+<p>调了半天，过样例了，上 selfeval 一测，<span
+class="math inline">\(100\)</span> 分？！</p>
+<p>WC 的 C 题是能满分的？</p>
+<p>不过跑了 1.8s，卡常无果，心想 <span class="math inline">\(85\)</span>
+不是也赢麻了？开 B！</p>
+<p>想了个从高到低位贪心，发现有种 case 有点困难，但是 AB
+性质都能做，还可以构造一种方案，写完整整有 <span
+class="math inline">\(50\)</span> 分，此时才 3.5h，心想这不是稳 Au
+了？</p>
+<p>然后就开始有点浪了，怒写了几个搜索，有几个假了，剩下一个 <span
+class="math inline">\(5\sim 7\)</span> 个点死活 TLE，于是在最后 1.5h
+怒砍下了 <span class="math inline">\(2\sim 4\)</span> 个点的构造，整整
+<span class="math inline">\(6\)</span> 分！</p>
+<p><span class="math inline">\(100+56+100=256\)</span>。</p>
+<p>出场听说 lch <span class="math inline">\(234\)</span>，drc <span
+class="math inline">\(262\)</span>，OU <span
+class="math inline">\(264\)</span>，想想也不赖！</p>
+<p>复查的时候一直在念「C 别卡我常，C
+别卡我常，时间空间都别卡……」。事实上一分也没有挂。</p>
+<p>晚上就是文艺汇演了。观赏了 OU，lch，Daniel，251Sec
+四位老师的排练。</p>
+<p>看到了
+grg，cfz，矩阵群，irris，三叉树等老师们的精彩表演。有几首歌唱的很好听，听到了很多
+ioiwc 风格的歌曲，相声，nvcesuo，还看到了 SkyWave 老师的影子。</p>
+<p>总之就是全世界 OIer 文艺上升葛立恒数倍而我不变。</p>
+<p>晚上 CF 没打。去了 drc 和 lch 他们寝室开。</p>
+<h3 id="lecture-day-3">1.21 / lecture day 3</h3>
+<p>《一剪梅》豪庭！</p>
+<p>不知啥时候开始循环播放《一剪梅》。</p>
+<p>听说 Au 线 <span class="math inline">\(258\)</span>。吓飞了。</p>
+<h3 id="lecture-day-4">1.22 / lecture day 4</h3>
+<p>《一剪梅》豪庭！</p>
+<p>晚上 div.2 阳间场乱序开题 AK 了。</p>
+<h3 id="closing-day">1.23 / closing day</h3>
+<p>没听到《一剪梅》起床铃。</p>
+<p>早上答辩没去听。</p>
+<p>下午闭幕式。实锤 Ag 了。后面坐了 ANIG 和 jager59。有个老哥加了我
+QQ。</p>
+<p>晚上继续打摆，就睡觉去了。</p>
+<h3 id="leaving-day">1.24 / leaving day</h3>
+<p>还是结束了啊。</p>
+<p>也算凑齐了 WC APIO NOI 各一次。</p>
+<p>也许我最终也会空着手退役，但是，谁知道呢？高兴就好！</p>
+<p>再见，绍兴！</p>
+<p><img
+src="https://cdn.luogu.com.cn/upload/image_hosting/6stgp2ok.png" /></p>
+<hr />
+<p>获得成就：</p>
+<ul>
+<li>【Graphomata 玩家怎么你了】</li>
+<li>【图寻玩家怎么你了】</li>
+<li>【平方数】</li>
+<li>【线卡 II】</li>
+<li>【饮料雪碧爱好者】</li>
+<li>【文艺汇演 I】</li>
+<li>【第一课堂的拥护者】</li>
+<li>【空腹 I】</li>
+<li>【卷王】</li>
+<li>【不睡神 I】</li>
+</ul>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>2024-2025</category>
+      </categories>
+  </entry>
+  <entry>
     <title>THUPC 2025 单开记</title>
     <url>/2024/12/12/THUPC-2025-%E5%8D%95%E5%BC%80%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="day--">Day -?</h2>
