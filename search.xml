@@ -166,6 +166,105 @@ n}\right)\)</span>。</p>
       </categories>
   </entry>
   <entry>
+    <title>GDOI 2025 失败记</title>
+    <url>/2025/03/03/GDOI-2025-Loser-GG/</url>
+    <content><![CDATA[<p>前传：<a
+href="https://yeminghan2021.github.io/2024/11/24/NOIP-2024/">NOIp
+炸成废墟了</a>，GD 高中 rk
+83。省选大概得翻八九十分或者一百分什么的。</p>
+<h2 id="day--inf">Day -INF</h2>
+<p>省选集训。</p>
+<p>模拟赛不知为啥打得非常超标，好几次说自己是人均分结果出来发现是 rk
+1。也有几场打得很烂。</p>
+<blockquote>
+<p>打得好就是 NB 上天了，打得不好就是题出的有问题。—— jiangly</p>
+</blockquote>
+<h2 id="day--inf-1">Day -inf</h2>
+<p>中间有几天去了 WC。拿了个 Ag 首部。</p>
+<blockquote>
+<p>丢掉的 Au 在 NOI 上拿回来。—— lzx</p>
+</blockquote>
+<h2 id="day--2">Day -2</h2>
+<p>回家了。</p>
+<h2 id="day--1">Day -1</h2>
+<p>打了 HB 省选模拟同步赛。T1 想了 3h 才会 <span
+class="math inline">\(\mathcal O(n\sqrt n\log
+n)\)</span>，但是发现跑得很快，写完就扔了。T3 发现暴力换根有 <span
+class="math inline">\(55\)</span> 分，写完发现写多了一只 <span
+class="math inline">\(\log\)</span>，于是改了一下去掉了，<strong>然后忘了测大样例</strong>。然后感觉
+T2 暴力写不完了，结果说 T2 样例错了延了 1h，于是就……写完了……</p>
+<p>出分发现 T3 爆成 <span class="math inline">\(0\)</span>
+了，一测大样例发现 WA 光了。<strong><em>警钟敲烂</em></strong>。</p>
+<h2 id="day-0">Day 0</h2>
+<p>报到。</p>
+<p>考号是 <code>GD-082</code>。</p>
+<p>试机发现机子上有超级强大的 VScode，甚至有好用的 C/C++ 插件和 code
+runner。必须五星好评！</p>
+<p>练习了一下写拍子。</p>
+<p>收到了 @<a
+href="https://www.luogu.com.cn/user/679936">sunkuangzheng</a> 的 CF
+验题邀请，晚上开了
+VP。做了【数据删除】个题。感觉【数据删除】很【数据删除】。</p>
+<h2 id="day-1">Day 1</h2>
+<p>8:27 <code>keeP*drEAm&amp;iNg</code>。</p>
+<p>8:45 这 A 不是排个序扫一遍没了吗？</p>
+<p>9:00 通过 A 的大样例。</p>
+<p>9:?? 胡出了 B 题的一个 <span class="math inline">\(\mathcal
+O(\frac{nm+q\log w}w+q\sqrt n)\)</span> 的做法。感觉有点高，于是开始手写
+bitset。</p>
+<p>10:?? 写完了。调。</p>
+<p>11:00 过大样例，发现只跑了 1.7s。造了组极限，跑了 1.9s。上 NOI
+linux，跑了 3s 多。测了下空间和 UB，开始看 C。</p>
+<p>11:30 根据猜的结论编出了一个 <span class="math inline">\(\mathcal
+O(n^3)\)</span> 的搜索，但极其难写。</p>
+<p>12:30 放弃了对其的调试。试图写暴力。发现自己似乎胡出了树的做法。</p>
+<p>12:50 发现树假掉了。继续试图写暴力。</p>
+<p>12:56 未能写完 C 题暴力。</p>
+<hr />
+<p><span class="math display">\[100+100+0=200\]</span></p>
+<p>出来听说 lch <span class="math inline">\(200\)</span>，drc <span
+class="math inline">\(240\)</span>，yjl <span
+class="math inline">\(300\)</span>，感觉自己打出了低于大众分。</p>
+<p>但是水群的时候发现好像会 B 的人没有那么多，但是有一些人会 C 题 <span
+class="math inline">\(52\)</span> 分。然后发现 B
+题评了个黑？我是能赛场切黑题的？！</p>
+<p>然后听说 B 题的 <span class="math inline">\(\mathcal O(nq)\)</span>
+可能获得 <span class="math inline">\([20,100]\)</span> 分。</p>
+<p>当时感觉自己翻回来了一点。</p>
+<h2 id="day-2">Day 2</h2>
+<p>8:27 <code>ReM#Ain(LoVinG</code>。</p>
+<p>8:45 A 胡出了正解，先写了个暴力。</p>
+<p>8:55 开始写正解。</p>
+<p>9:20 过大样例。</p>
+<p>9:30 拍上了 A 题。开始想 B。哟这不是我们的 DAG 容斥吗？我来编一编 C
+性质先。</p>
+<p>11:30 放弃冲 B 题。</p>
+<p>12:10 写完 B 题暴力，开始想 C。</p>
+<p>12:30 开始写 C 题爆搜。</p>
+<p>12:40 写完。</p>
+<hr />
+<p><span class="math display">\[100+24+8=132\]</span></p>
+<p>出乎意料的是大众分似乎是 <span
+class="math inline">\([132,156]\)</span>
+什么的。但反正进队是没希望了。</p>
+<p>异域征了。</p>
+<p>羡慕队爷啊。</p>
+<p>不知是不是 <span class="math inline">\([\text{NOI 2024},\text{CSP
+2024}]\)</span>
+这段时间内打比赛打得太超标了，那段时间总是有一种「进队十拿九稳」的感觉。</p>
+<p>noip 爆完状态就开始急剧下降，一天睡 ~7h 成了常态，每天起床启动期有
+~1h。感觉开始越来越摆，水的时长越来越多，模拟赛打得越来越烂。那时也总是在幻想自己如何如何翻进省队并在
+NOI 中拿到 Au。</p>
+<p>如果要继续的话，希望能暂时放下这段沉重的历史，尽力在最后一年打出让自己满意的成绩吧。</p>
+<p>也祝所有进队的、没进队的、退役的、继续的 OIer
+们，都<strong>能过上自己想要的生活</strong>。</p>
+]]></content>
+      <categories>
+        <category>游记</category>
+        <category>2024-2025</category>
+      </categories>
+  </entry>
+  <entry>
     <title>(P+N)WC 2025 旅游记</title>
     <url>/2025/01/21/P-N-WC-2025/</url>
     <content><![CDATA[<h2 id="part.-0">Part. 0</h2>
