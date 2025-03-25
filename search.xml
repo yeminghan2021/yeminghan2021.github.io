@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[ARC195E] Ramdom Tree Distance</title>
+    <url>/2025/03/25/ARC195E-Ramdom-Tree-Distance/</url>
+    <content><![CDATA[<p>好像大家都在推 <span
+class="math inline">\(\operatorname{lca}\)</span>
+深度固定什么的，这篇题解来个比较粗暴的推法。</p>
+<hr />
+<p>首先你考虑直接 dp：对于 <span
+class="math inline">\(i&lt;j\)</span>，令 <span
+class="math inline">\(f(i,j)\)</span> 表示 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(j\)</span> 的期望距离。</p>
+<p>这里我们将 <span class="math inline">\(j\)</span>
+不断地跳父亲，直到跳到 <span class="math inline">\(\le i\)</span>
+的点。</p>
+<p>那么贡献变成了两部分：</p>
+<ul>
+<li>编号 <span class="math inline">\(&gt;i\)</span> 的贡献：显然 <span
+class="math inline">\(a_j\)</span> 一定有贡献。考虑 <span
+class="math inline">\(a_k\;(i&lt;k&lt;j)\)</span>，其当且仅当曾经跳到过
+<span class="math inline">\(k\)</span>
+时产生贡献。那么这个等价于「第一次跳到 <span class="math inline">\(\le
+k\)</span> 的点时恰好跳到了 <span
+class="math inline">\(k\)</span>」，这个概率显然是 <span
+class="math inline">\(\dfrac1k\)</span>，所以期望贡献是 <span
+class="math inline">\(\dfrac{a_k}k\)</span>。</li>
+<li>编号 <span class="math inline">\(\le i\)</span> 的贡献：如果最后跳到
+<span class="math inline">\(i\)</span> 就是 <span
+class="math inline">\(0\)</span>，否则跳到 <span
+class="math inline">\(k\;(k&lt;i)\)</span> 就是 <span
+class="math inline">\(f(k,i)\)</span>。</li>
+</ul>
+<p>所以有转移方程：</p>
+<p><span
+class="math display">\[f(i,j)=a_j+\left(\sum_{k=i+1}^{j-1}\frac{a_k}k\right)+
+\left(\frac1i\sum_{k=1}^{i-1}f(k,i)\right)\]</span></p>
+<p>你发现最后面那坨和 <span class="math inline">\(j\)</span>
+完全没关系，那么可以考虑将 <span class="math inline">\(j\)</span>
+这一维去掉。</p>
+<p>观察 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\(j\)</span> 这一维的差分：</p>
+<p><span
+class="math display">\[f(i,j)-f(i,j-1)=a_j-\frac{j-2}{j-1}a_{j-1}\]</span></p>
+<p>你发现这玩意只跟 <span class="math inline">\(j\)</span>
+有关，不妨记为 <span class="math inline">\(C_j\)</span>。另外这个式子在
+<span class="math inline">\(j\ge i+2\)</span> 时成立，所以有：</p>
+<p><span
+class="math display">\[f(i,j)=f(i,i+1)+\sum_{k=i+2}^jC_k\]</span></p>
+<p>现在 <span class="math inline">\(f\)</span> 里面已经没有 <span
+class="math inline">\(j\)</span> 了，那么令 <span
+class="math inline">\(F_i=f(i,i+1)\)</span>：</p>
+<p><span
+class="math display">\[\begin{aligned}F_i&amp;=a_i+\frac1i\sum_{k=1}^{i-1}f(k,i)\\
+&amp;=a_i+\frac1i\sum_{k=1}^{i-1}\left(F_k+\sum_{l=k+2}^iC_l\right)
+\\&amp;=a_i+\frac1i\left[\left(\sum_{k=1}^{i-1}F_k\right)+\left(\sum_{l=3}^i\sum_{k=1}^{l-2}C_l\right)\right]
+\\&amp;=a_i+\frac1i\left[\left(\sum_{k=1}^{i-1}F_k\right)+\left(\sum_{l=3}^i(l-2)\cdot
+C_l\right)\right]\end{aligned}\]</span></p>
+<p>那么你发现后面的两个求和都可以边求边推，所以 <span
+class="math inline">\(F\)</span> 就可以 <span
+class="math inline">\(\mathcal O(n)\)</span> 求出了。</p>
+<p>那你每次询问就是一个 <span class="math inline">\(F\)</span> 值加一段
+<span class="math inline">\(C\)</span> 的和（再乘一个 <span
+class="math inline">\((n-1)!\)</span>，因为是求和），可以 <span
+class="math inline">\(\mathcal O(1)\)</span> 求出。</p>
+<p>于是做完了。事件复杂度 <span class="math inline">\(\mathcal
+O(n+q)\)</span>。</p>
+<p>代码很短。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Author: YE Minghan</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PB emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PPB pop_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ALL(Name) Name.begin(),Name.end()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PII pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VI vector<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GI greater<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">200005</span>,MOD=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">int</span> n,q,a[N];</span><br><span class="line"><span class="type">int</span> inv[N],tfc;</span><br><span class="line"><span class="type">int</span> f[N],s[N],ss[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>),cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"><span class="comment">//	int _;cin&gt;&gt;_;while(_--)</span></span><br><span class="line"></span><br><span class="line">	cin&gt;&gt;n&gt;&gt;q,inv[<span class="number">1</span>]=tfc=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)cin&gt;&gt;a[i],a[i]%=MOD,inv[i]=<span class="number">1ll</span>*(MOD-MOD/i)*inv[MOD%i]%MOD,tfc=(i<span class="number">-1ll</span>)*tfc%MOD;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)ss[i]=(ss[i<span class="number">-1</span>]+(s[i]=(a[i]+(MOD-i<span class="number">+2ll</span>)*a[i<span class="number">-1</span>]%MOD*inv[i<span class="number">-1</span>])%MOD))%MOD;</span><br><span class="line">	<span class="type">int</span> t=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f[i]=(<span class="number">1ll</span>*t*inv[i]+a[i<span class="number">+1</span>])%MOD;</span><br><span class="line">		t=(t+(i<span class="number">-1ll</span>)*s[i<span class="number">+1</span>]+f[i])%MOD;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(q--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x,y;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		cout&lt;&lt;<span class="number">1ll</span>*tfc*(<span class="number">0ll</span>+f[x]+(ss[y]-ss[x<span class="number">+1</span>]+MOD))%MOD&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>AtCoder</category>
+      </categories>
+  </entry>
+  <entry>
     <title>[ABC389G] Odd Even Graph</title>
     <url>/2025/01/18/ABC389G-Odd-Even-Graph/</url>
     <content><![CDATA[<h2 id="statement">Statement</h2>
