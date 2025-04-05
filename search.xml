@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[ABC400G] Patisserie ABC 3</title>
+    <url>/2025/04/05/ABC400G-Patisserie-ABC-3/</url>
+    <content><![CDATA[<h2 id="statement">Statement</h2>
+<p>给定正整数 <span class="math inline">\(n,k\)</span> 和 <span
+class="math inline">\(n\)</span> 个三元组 <span
+class="math inline">\((x_i,y_i,z_i)\)</span>。</p>
+<p>现要选出 <span class="math inline">\(k\)</span> 个二元组 <span
+class="math inline">\((a_i,b_i)\)</span>，满足每个位置只能出现一次，并要求最大化：</p>
+<p><span
+class="math display">\[\sum_{i=1}^k\max\{x_{a_i}+x_{b_i},y_{a_i}+y_{b_i},z_{a_i}+z_{b_i}\}\]</span></p>
+<p>输出这个最大值。</p>
+<p>Data range：<span class="math inline">\(T\)</span> 组多测，<span
+class="math inline">\(\sum n\le 10^5\)</span>，<span
+class="math inline">\(2k\le n\)</span>，<span class="math inline">\(0\le
+x_i,y_i,z_i\le 10^9\)</span>。</p>
+<h2 id="solution">Solution</h2>
+<p>首先你考虑每个数对答案的贡献。你发现每种数（指 <span
+class="math inline">\(x,y,z\)</span>）的贡献都是成对的，所以肯定要求数量都是偶数。</p>
+<p>而你发现偶数是充要的（两两配对就行，如果实际上不是这种数产生贡献那也肯定不是最优解），那么问题转化成了：</p>
+<blockquote>
+<p>对于每个 <span class="math inline">\(i\)</span> 可以选 <span
+class="math inline">\(x_i\)</span>、选 <span
+class="math inline">\(y_i\)</span>、选 <span
+class="math inline">\(z_i\)</span> 或什么都不选，要求一共选 <span
+class="math inline">\(2k\)</span>
+个，且每种数都要选偶数个，求最大和。</p>
+</blockquote>
+<p>这里就有了一个 <span class="math inline">\(\mathcal O(nk)\)</span>
+的做法了，就是 dp 记一下前 <span class="math inline">\(i\)</span>
+个里选了 <span class="math inline">\(j\)</span> 个，<span
+class="math inline">\(x,y,z\)</span> 分别有奇数/偶数个的最大和。</p>
+<p>当然这是过不了的，考虑优化。</p>
+<p>你发现偶数这个限制很松，即使不符合稍微调一下也能符合。</p>
+<p>那你考虑按 <span class="math inline">\(\max\{x_i,y_i,z_i\}\)</span>
+从大到小排序。</p>
+<p>然后会有一个结论：最终方案中，前 <span
+class="math inline">\(2k\)</span>
+个里面最多有两个不选（被调整成后面的至多两个，注意前面的选了并<strong>不</strong>一定是最大的那个）。</p>
+<blockquote>
+<p>证明：</p>
+<p>假设前面的有三个没选，那么对应的后面会选了三个。</p>
+<p>我们称一个前面的没选的 <span class="math inline">\(x_i\)</span>
+最大的位置为 <span class="math inline">\(\texttt X\)</span> 类，<span
+class="math inline">\(\texttt Y,\texttt Z\)</span> 类同理；后面的选了
+<span class="math inline">\(x_i\)</span> 的位置为 <span
+class="math inline">\(\texttt x\)</span> 类，<span
+class="math inline">\(\texttt y,\texttt z\)</span> 类同理。</p>
+<p>那么：</p>
+<ol type="1">
+<li>显然不可能同时出现 <span class="math inline">\(\texttt X,\texttt
+x\)</span> 类，因为可以直接替换掉，其他的同理。</li>
+<li>也不可能同时出现两个 <span class="math inline">\(\texttt X\)</span>
+类和两个 <span class="math inline">\(\texttt y\)</span>
+类：也可以直接替换。</li>
+</ol>
+<p>之后简单分讨一下就可以证明该命题。</p>
+</blockquote>
+<p>那么接下来就简单了：对前 <span class="math inline">\(2k\)</span>
+个和后面 <span class="math inline">\((n-2k)\)</span> 个分别
+dp，那么「选了几个」的维度就被压缩到了 <span
+class="math inline">\(3\)</span>
+的长度（对于前面可以记不选了几个），那么 dp 的复杂度就降到了 <span
+class="math inline">\(\mathcal O(n)\)</span>。</p>
+<p>于是就在 <span class="math inline">\(\mathcal O(n\log n)\)</span>
+的时间复杂度内解决了本题，瓶颈在于排序。</p>
+<ul>
+<li>本题只有 <span class="math inline">\(x,y,z\)</span>
+三维，但实际上可以扩展到 <span class="math inline">\(m\)</span>
+维的情况。此时可以证明前面至多 <span
+class="math inline">\((m-1)\)</span> 个被替换成后面的，所以可以在 <span
+class="math inline">\(\mathcal O(n\log n+nm^22^m)\)</span>
+的时间复杂度内解决（注意转移带一个 <span
+class="math inline">\(m\)</span>）。</li>
+</ul>
+<h2 id="code">Code</h2>
+<p>32ms/14MB</p>
+<p>截至现在它还是并列最优解。<del>注意到有个 31ms
+的代码与此代码编辑距离为 <span
+class="math inline">\(0\)</span>。小朋友素质无敌了。</del></p>
+<p><a
+href="https://atcoder.jp/contests/abc400/submissions/64533700">Submission
+link</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Author: YE Minghan</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;templates/debug.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> dbg(...) (void)0</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> here (void)0</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PB emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PPB pop_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ALL(Name) Name.begin(),Name.end()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PII pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VI vector<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GI greater<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">100005</span>;</span><br><span class="line"><span class="type">int</span> n,k;</span><br><span class="line">array&lt;<span class="type">int</span>,3&gt;a[N];</span><br><span class="line">ll dp[N][<span class="number">12</span>];</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ck</span><span class="params">(ll &amp;x,ll y)</span></span>&#123;x=<span class="built_in">max</span>(x,y);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>),cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line">	<span class="type">int</span> _;cin&gt;&gt;_;<span class="keyword">while</span>(_--)</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)cin&gt;&gt;a[i][j];</span><br><span class="line">	<span class="built_in">sort</span>(a<span class="number">+1</span>,a+n<span class="number">+1</span>,[](<span class="keyword">auto</span> x,<span class="keyword">auto</span> y)&#123;<span class="keyword">return</span> <span class="built_in">max</span>(&#123;x[<span class="number">0</span>],x[<span class="number">1</span>],x[<span class="number">2</span>]&#125;)&gt;<span class="built_in">max</span>(&#123;y[<span class="number">0</span>],y[<span class="number">1</span>],y[<span class="number">2</span>]&#125;);&#125;);</span><br><span class="line">	<span class="built_in">memset</span>(dp,<span class="number">0xc0</span>,<span class="number">8</span>*<span class="number">12</span>*(n<span class="number">+3</span>));</span><br><span class="line">	dp[<span class="number">0</span>][<span class="number">0</span>]=dp[n<span class="number">+1</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=k&lt;&lt;<span class="number">1</span>;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">12</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">ck</span>(dp[i][j],dp[i<span class="number">-1</span>][j]+a[i][<span class="number">0</span>]);</span><br><span class="line">			<span class="built_in">ck</span>(dp[i][j^<span class="number">1</span>],dp[i<span class="number">-1</span>][j]+a[i][<span class="number">1</span>]);</span><br><span class="line">			<span class="built_in">ck</span>(dp[i][j^<span class="number">2</span>],dp[i<span class="number">-1</span>][j]+a[i][<span class="number">2</span>]);</span><br><span class="line">			<span class="keyword">if</span>(j&lt;<span class="number">8</span>)<span class="built_in">ck</span>(dp[i][j<span class="number">+4</span>],dp[i<span class="number">-1</span>][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=n;i&gt;k&lt;&lt;<span class="number">1</span>;i--)</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">0</span>;j&lt;<span class="number">12</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(j&lt;<span class="number">8</span>)<span class="built_in">ck</span>(dp[i][j<span class="number">+4</span>],dp[i<span class="number">+1</span>][j]+a[i][<span class="number">0</span>]);</span><br><span class="line">			<span class="keyword">if</span>(j&lt;<span class="number">8</span>)<span class="built_in">ck</span>(dp[i][(j<span class="number">+4</span>)^<span class="number">1</span>],dp[i<span class="number">+1</span>][j]+a[i][<span class="number">1</span>]);</span><br><span class="line">			<span class="keyword">if</span>(j&lt;<span class="number">8</span>)<span class="built_in">ck</span>(dp[i][(j<span class="number">+4</span>)^<span class="number">2</span>],dp[i<span class="number">+1</span>][j]+a[i][<span class="number">2</span>]);</span><br><span class="line">			<span class="built_in">ck</span>(dp[i][j],dp[i<span class="number">+1</span>][j]);</span><br><span class="line">		&#125;</span><br><span class="line">	ll ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">12</span>;i++)<span class="built_in">ck</span>(ans,dp[k&lt;&lt;<span class="number">1</span>][i]+dp[(k&lt;&lt;<span class="number">1</span>)<span class="number">+1</span>][i]),<span class="built_in">dbg</span>(i,ans);</span><br><span class="line">	cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>solutions</category>
+        <category>AtCoder</category>
+      </categories>
+  </entry>
+  <entry>
     <title>[ARC195E] Ramdom Tree Distance</title>
     <url>/2025/03/25/ARC195E-Ramdom-Tree-Distance/</url>
     <content><![CDATA[<p>好像大家都在推 <span
@@ -64,7 +154,7 @@ class="math inline">\(\mathcal O(n)\)</span> 求出了。</p>
 <span class="math inline">\(C\)</span> 的和（再乘一个 <span
 class="math inline">\((n-1)!\)</span>，因为是求和），可以 <span
 class="math inline">\(\mathcal O(1)\)</span> 求出。</p>
-<p>于是做完了。事件复杂度 <span class="math inline">\(\mathcal
+<p>于是做完了。时间复杂度 <span class="math inline">\(\mathcal
 O(n+q)\)</span>。</p>
 <p>代码很短。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Author: YE Minghan</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> endl <span class="string">&#x27;\n&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PB emplace_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PPB pop_back</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MP make_pair</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ALL(Name) Name.begin(),Name.end()</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PII pair<span class="string">&lt;int,int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> VI vector<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> GI greater<span class="string">&lt;int&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> fi first</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> se second</span></span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N=<span class="number">200005</span>,MOD=<span class="number">998244353</span>;</span><br><span class="line"><span class="type">int</span> n,q,a[N];</span><br><span class="line"><span class="type">int</span> inv[N],tfc;</span><br><span class="line"><span class="type">int</span> f[N],s[N],ss[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>),cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line"><span class="comment">//	int _;cin&gt;&gt;_;while(_--)</span></span><br><span class="line"></span><br><span class="line">	cin&gt;&gt;n&gt;&gt;q,inv[<span class="number">1</span>]=tfc=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)cin&gt;&gt;a[i],a[i]%=MOD,inv[i]=<span class="number">1ll</span>*(MOD-MOD/i)*inv[MOD%i]%MOD,tfc=(i<span class="number">-1ll</span>)*tfc%MOD;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">2</span>;i&lt;=n;i++)ss[i]=(ss[i<span class="number">-1</span>]+(s[i]=(a[i]+(MOD-i<span class="number">+2ll</span>)*a[i<span class="number">-1</span>]%MOD*inv[i<span class="number">-1</span>])%MOD))%MOD;</span><br><span class="line">	<span class="type">int</span> t=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		f[i]=(<span class="number">1ll</span>*t*inv[i]+a[i<span class="number">+1</span>])%MOD;</span><br><span class="line">		t=(t+(i<span class="number">-1ll</span>)*s[i<span class="number">+1</span>]+f[i])%MOD;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(q--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x,y;</span><br><span class="line">		cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">		cout&lt;&lt;<span class="number">1ll</span>*tfc*(<span class="number">0ll</span>+f[x]+(ss[y]-ss[x<span class="number">+1</span>]+MOD))%MOD&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
